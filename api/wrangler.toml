@@ -1,0 +1,13 @@
+name = "codequest-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "codequest-db"
+database_id = "placeholder"
+migrations_dir = "drizzle"
