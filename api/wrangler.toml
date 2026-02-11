@@ -9,5 +9,5 @@ binding = "AI"
 [[d1_databases]]
 binding = "DB"
 database_name = "codequest-db"
-database_id = "placeholder"
+database_id = "456fe19e-6087-4c7c-aa96-7baf0b40070a"
 migrations_dir = "drizzle"
