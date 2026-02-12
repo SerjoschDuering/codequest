@@ -14,7 +14,14 @@ Exercise types available:
 Output format: JSON array of exercise objects, each with:
 { "type": "<exercise_type>", "content": { ...type-specific fields } }
 
-Generate 3-5 varied exercises. Mix different types. Make questions educational and fun.
+IMPORTANT rules for choosing exercise types:
+- Prefer simpler types: multiple_choice, fill_in_blank, matching, acronym_challenge
+- Only use code_completion, guess_output, spot_the_bug when the content is specifically about programming code
+- For conceptual/theory notes, stick to multiple_choice, fill_in_blank, matching, sequencing
+- Always include at least one multiple_choice exercise
+- Mix 2-3 different types per quiz
+
+Generate 3-5 varied exercises. Make questions educational and fun.
 Focus on practical understanding, not trivia.`
 
 export function buildGeneratePrompt(text: string): string {
@@ -45,7 +52,16 @@ export function buildMultiNotesPrompt(notes: Array<{ title: string; content: str
   const notesBlock = notes
     .map((n) => `--- Note: ${n.title} ---\n${n.content}`)
     .join('\n\n')
-  return `A student took these study notes. Generate exercises to help them review and retain ALL the concepts across these notes. Mix exercise types. Reference specific details from the notes.\n\n${notesBlock}\n\nGenerate ${count} exercises covering key concepts from all notes above.`
+  return `A student took these study notes. Generate exercises to help them review and retain ALL the concepts across these notes. Reference specific details from the notes.
+
+Pick exercise types that match the content:
+- For concepts/theory: multiple_choice, fill_in_blank, matching, sequencing
+- For code topics: also use code_completion or guess_output
+- Always start with a multiple_choice question
+
+${notesBlock}
+
+Generate ${count} exercises covering key concepts from all notes above.`
 }
 
 export function buildTopicPrompt(topic: string): string {

@@ -37,6 +37,7 @@ function LessonPage() {
         exercises={exercises}
         lessonId={lessonId}
         onComplete={() => navigate({ to: from === 'notes' ? '/notes' : '/courses' })}
+        onCancel={() => navigate({ to: from === 'notes' ? '/notes' : '/courses' })}
       />
     </div>
   )

@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
 export type Note = {
@@ -51,30 +52,39 @@ export function useDeleteNote() {
 
 export function useEnhanceNote() {
   const qc = useQueryClient()
-  return useMutation({
+  const abortRef = useRef<AbortController | null>(null)
+  const mutation = useMutation({
     mutationFn: async (noteId: string) => {
+      abortRef.current?.abort()
+      abortRef.current = new AbortController()
       const res = await fetch('/api/ai/enhance-note', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ noteId }),
+        signal: abortRef.current.signal,
       })
       if (!res.ok) throw new Error('Enhancement failed')
       return res.json() as Promise<{ enhancedContent: string }>
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ['notes'] }),
   })
+  return { ...mutation, cancel: () => abortRef.current?.abort() }
 }
 
 export function useGenerateNotesQuiz() {
   const qc = useQueryClient()
-  return useMutation({
+  const abortRef = useRef<AbortController | null>(null)
+  const mutation = useMutation({
     mutationFn: async (noteIds: string[]) => {
+      abortRef.current?.abort()
+      abortRef.current = new AbortController()
       const res = await fetch('/api/ai/notes-quiz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ noteIds }),
+        signal: abortRef.current.signal,
       })
       if (!res.ok) {
         const err = await res.json().catch(() => ({}))
@@ -86,4 +96,5 @@ export function useGenerateNotesQuiz() {
       qc.invalidateQueries({ queryKey: ['notes'] })
     },
   })
+  return { ...mutation, cancel: () => abortRef.current?.abort() }
 }

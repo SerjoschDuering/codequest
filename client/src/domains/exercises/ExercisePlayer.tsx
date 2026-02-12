@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { XPPopup } from '~/design-system'
 import {
-  CheckCircle, XCircle, ArrowRight, Lightning,
+  CheckCircle, XCircle, ArrowRight, Lightning, X,
 } from '@phosphor-icons/react'
 import type { Exercise, SubmitResult } from './api'
 import { useSubmitAnswer } from './api'
@@ -19,6 +19,7 @@ type Props = {
   exercises: Exercise[]
   lessonId: string
   onComplete: () => void
+  onCancel?: () => void
 }
 
 const TYPE_LABELS: Record<string, string> = {
@@ -33,7 +34,7 @@ const TYPE_LABELS: Record<string, string> = {
   acronym_challenge: 'Acronym Challenge',
 }
 
-export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
+export function ExercisePlayer({ exercises, lessonId, onComplete, onCancel }: Props) {
   const [currentIdx, setCurrentIdx] = useState(0)
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [showXP, setShowXP] = useState(false)
@@ -44,10 +45,11 @@ export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
   const isLast = currentIdx === exercises.length - 1
 
   // Memoize parsed content to avoid new object identity on every render
-  const content = useMemo(
-    () => exercise ? JSON.parse(exercise.content) : null,
-    [exercise?.content],
-  )
+  const content = useMemo(() => {
+    if (!exercise) return null
+    try { return JSON.parse(exercise.content) }
+    catch { return null }
+  }, [exercise?.content])
 
   // Auto-advance on correct answer (use refs to avoid stale closures)
   const isLastRef = useRef(isLast)
@@ -66,23 +68,36 @@ export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
     return () => { if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current) }
   }, [result])
 
-  if (!exercise || !content) return null
-
-  const progress = ((currentIdx + 1) / exercises.length) * 100
-
-  async function handleAnswer(answer: unknown, correct: boolean) {
-    const res = await submit.mutateAsync({
-      exerciseId: exercise!.id, lessonId, answer, correct,
-    })
-    setResult(res)
-    if (res.xpEarned > 0) setShowXP(true)
-  }
-
   function handleNext() {
     if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current)
     setResult(null)
     if (isLast) onComplete()
     else setCurrentIdx(prev => prev + 1)
+  }
+
+  if (!exercise) return null
+  if (!content) return (
+    <div className="text-center py-8">
+      <p className="text-[var(--text-secondary)]">Could not load this exercise.</p>
+      <button onClick={handleNext} className="mt-4 text-[var(--color-primary)] font-medium">
+        Skip to next
+      </button>
+    </div>
+  )
+
+  const progress = ((currentIdx + 1) / exercises.length) * 100
+
+  async function handleAnswer(answer: unknown, correct: boolean) {
+    try {
+      const res = await submit.mutateAsync({
+        exerciseId: exercise!.id, lessonId, answer, correct,
+      })
+      setResult(res)
+      if (res.xpEarned > 0) setShowXP(true)
+    } catch {
+      // Network error — still show feedback so user can proceed
+      setResult({ correct, xpEarned: 0, totalXp: 0, level: 0, leveledUp: false, currentStreak: 0, longestStreak: 0 })
+    }
   }
 
   function renderExercise() {
@@ -105,6 +120,16 @@ export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
     <div className="flex flex-col gap-4 pb-32">
       {/* Top utility strip */}
       <div className="flex items-center gap-3">
+        {onCancel && (
+          <button
+            onClick={onCancel}
+            className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 active:scale-90 transition-transform"
+            style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}
+            aria-label="Exit quiz"
+          >
+            <X size={16} weight="bold" color="var(--text-secondary)" />
+          </button>
+        )}
         <div className="flex-1 h-2 rounded-full bg-[var(--glass-border)] overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-500"

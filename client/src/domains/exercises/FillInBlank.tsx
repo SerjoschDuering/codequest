@@ -22,6 +22,7 @@ export function FillInBlank({ content, onAnswer }: Props) {
   const [answers, setAnswers] = useState<string[]>(content.blanks.map(() => ''))
   const [submitted, setSubmitted] = useState(false)
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null)
+  const [hints, setHints] = useState<boolean[]>(content.blanks.map(() => false))
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
   useEffect(() => {
@@ -136,17 +137,38 @@ export function FillInBlank({ content, onAnswer }: Props) {
         ))}
       </div>
 
-      {/* Submit button */}
+      {/* Hint + Submit buttons */}
       {!submitted && (
-        <GlassButton
-          onClick={handleSubmit}
-          disabled={!allFilled}
-          fullWidth
-          className="flex items-center justify-center gap-2 mt-1"
-        >
-          <CheckCircle size={20} weight="bold" />
-          Check Answer
-        </GlassButton>
+        <div className="flex gap-2 mt-1">
+          <GlassButton
+            variant="secondary"
+            onClick={() => {
+              const nextHints = [...hints]
+              const unhinted = nextHints.findIndex((h) => !h)
+              if (unhinted !== -1) {
+                nextHints[unhinted] = true
+                setHints(nextHints)
+                const answer = content.blanks[unhinted].answer
+                const hint = answer.slice(0, Math.ceil(answer.length / 2))
+                handleInputChange(unhinted, hint)
+                inputRefs.current[unhinted]?.focus()
+              }
+            }}
+            disabled={hints.every(Boolean)}
+            className="flex items-center justify-center gap-1.5"
+          >
+            Hint
+          </GlassButton>
+          <GlassButton
+            onClick={handleSubmit}
+            disabled={!allFilled}
+            fullWidth
+            className="flex items-center justify-center gap-2"
+          >
+            <CheckCircle size={20} weight="bold" />
+            Check Answer
+          </GlassButton>
+        </div>
       )}
     </div>
   )
