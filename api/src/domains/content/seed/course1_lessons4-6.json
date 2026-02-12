@@ -1,0 +1,365 @@
+[
+  {
+    "title": "Databases & Storage",
+    "description": "Learn how apps store and retrieve data using databases, from relational SQL tables to flexible NoSQL stores.",
+    "sortOrder": 4,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "Which type of database organizes data into tables with rows and columns, similar to a spreadsheet?",
+          "options": [
+            "Relational database (SQL)",
+            "Key-value store",
+            "File system",
+            "Blockchain"
+          ],
+          "correctIndex": 0,
+          "explanation": "Relational databases like PostgreSQL and MySQL store data in structured tables with rows (records) and columns (fields). Each table represents an entity (like users or products), and you use SQL to query them."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "code_completion",
+        "content": {
+          "prompt": "Write a SQL query to get all users from the 'users' table who are older than 18.",
+          "codeTemplate": "___BLANK1___ name, age\nFROM ___BLANK2___\nWHERE age ___BLANK3___ 18;",
+          "blanks": [
+            {
+              "placeholder": "___BLANK1___",
+              "answer": "SELECT",
+              "hints": ["This SQL keyword retrieves data from a table"]
+            },
+            {
+              "placeholder": "___BLANK2___",
+              "answer": "users",
+              "hints": ["The name of the table mentioned in the prompt"]
+            },
+            {
+              "placeholder": "___BLANK3___",
+              "answer": ">",
+              "hints": ["Which comparison operator means 'greater than'?"]
+            }
+          ],
+          "language": "sql"
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each database type to its best description.",
+          "pairs": [
+            { "left": "SQL (Relational)", "right": "Structured tables with rows and columns" },
+            { "left": "Key-Value Store", "right": "Simple pairs like a dictionary: key maps to a value" },
+            { "left": "Document DB", "right": "Stores flexible JSON-like documents" },
+            { "left": "Graph DB", "right": "Optimized for relationships between connected data" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these steps in order to design a simple database for a blog app.",
+          "items": [
+            "Identify the main entities (users, posts, comments)",
+            "Define the columns/fields for each entity",
+            "Choose data types for each column (text, number, date)",
+            "Set up relationships between tables (e.g., a post belongs to a user)",
+            "Write SQL queries to create the tables"
+          ],
+          "explanation": "Database design starts with identifying what you need to store, then defining structure, choosing types, connecting related data, and finally creating the tables with SQL."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "In a relational database, a _____ is a single entry in a table, while a _____ defines a specific piece of information like 'name' or 'email'.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "row",
+              "acceptAlternatives": ["record", "tuple"]
+            },
+            {
+              "position": 1,
+              "answer": "column",
+              "acceptAlternatives": ["field", "attribute"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "guess_output",
+        "content": {
+          "code": "-- Given a 'products' table:\n-- | id | name    | price |\n-- | 1  | Apple   | 1.50  |\n-- | 2  | Banana  | 0.75  |\n-- | 3  | Cherry  | 2.00  |\n\nSELECT name FROM products WHERE price < 1.00;",
+          "language": "sql",
+          "options": [
+            "Banana",
+            "Apple, Banana",
+            "Cherry",
+            "Apple, Banana, Cherry"
+          ],
+          "correctIndex": 0,
+          "explanation": "Only Banana has a price less than 1.00 (it costs 0.75). The WHERE clause filters rows, and SELECT name means we only see the name column."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 6,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "DNS & Domains",
+    "description": "Discover how domain names get translated into IP addresses so your browser can find websites on the internet.",
+    "sortOrder": 5,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is the primary job of the Domain Name System (DNS)?",
+          "options": [
+            "Translate human-readable domain names into IP addresses",
+            "Encrypt data sent between your browser and a website",
+            "Store website files on a server",
+            "Block malicious websites from loading"
+          ],
+          "correctIndex": 0,
+          "explanation": "DNS acts like the internet's phone book. When you type 'google.com', DNS translates that human-friendly name into a numeric IP address (like 142.250.80.46) so your browser knows which server to contact."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each DNS record type to what it does.",
+          "pairs": [
+            { "left": "A Record", "right": "Points a domain to an IPv4 address" },
+            { "left": "CNAME Record", "right": "Creates an alias from one domain to another" },
+            { "left": "MX Record", "right": "Directs email to the correct mail server" },
+            { "left": "TXT Record", "right": "Stores text information, often for verification" }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these steps in order: What happens when you type 'www.example.com' into your browser?",
+          "items": [
+            "You type the URL into your browser's address bar",
+            "Your browser checks its local cache for the IP address",
+            "If not cached, the browser asks a DNS resolver for the IP",
+            "The DNS resolver looks up the domain and returns the IP address",
+            "Your browser sends an HTTP request to that IP address",
+            "The server responds with the web page content"
+          ],
+          "explanation": "When you visit a website, your browser first needs to find the server's IP address through DNS resolution. It checks its cache first, then asks a DNS resolver. Once it has the IP, it can send the actual web request."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "A domain _____ is a company where you purchase and register domain names like 'mysite.com'.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "registrar",
+              "acceptAlternatives": ["name registrar"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "DNS",
+          "fullForm": "Domain Name System",
+          "options": [
+            "Domain Name System",
+            "Data Network Service",
+            "Digital Naming Standard",
+            "Domain Node Server"
+          ],
+          "category": "web"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 5,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "CI/CD & Deployment",
+    "description": "Learn how modern teams automatically test, build, and deploy code so updates reach users quickly and safely.",
+    "sortOrder": 6,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is the main benefit of Continuous Integration (CI)?",
+          "options": [
+            "Automatically testing code changes every time a developer pushes to the repository",
+            "Hosting your website on a content delivery network",
+            "Writing code faster with AI assistance",
+            "Backing up your database every hour"
+          ],
+          "correctIndex": 0,
+          "explanation": "Continuous Integration automatically runs tests and checks every time code is pushed. This catches bugs early before they reach production, ensuring that new changes don't break existing features."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these CI/CD pipeline steps in the correct order.",
+          "items": [
+            "Developer pushes code to the Git repository",
+            "CI server detects the change and starts the pipeline",
+            "Automated tests run against the new code",
+            "Code is built into a deployable package",
+            "The build is deployed to a staging environment for review",
+            "After approval, the build is deployed to production"
+          ],
+          "explanation": "A typical CI/CD pipeline starts when code is pushed, then automatically tests it, builds it, deploys to staging for verification, and finally pushes to production once approved."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each CI/CD concept to its description.",
+          "pairs": [
+            { "left": "Continuous Integration", "right": "Automatically test and merge code changes frequently" },
+            { "left": "Continuous Deployment", "right": "Automatically push approved changes to production" },
+            { "left": "Staging Environment", "right": "A copy of production used for final testing before release" },
+            { "left": "Build Pipeline", "right": "A series of automated steps that prepare code for deployment" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "In CI/CD, the _____ environment is where you test changes before releasing them to real users in _____.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "staging",
+              "acceptAlternatives": ["test", "pre-production"]
+            },
+            {
+              "position": 1,
+              "answer": "production",
+              "acceptAlternatives": ["prod"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐\n│  Git     │───>│  Build   │───>│  Test    │───>│ Staging  │───>│Production│\n│  Push    │    │  Step    │    │  Step    │    │ Deploy   │    │ Deploy   │\n└──────────┘    └──────────┘    └──────────┘    └──────────┘    └──────────┘\n                                     │\n                                     │ Tests fail?\n                                     v\n                                ┌──────────┐\n                                │  Alert   │\n                                │Developer │\n                                └──────────┘",
+          "diagramType": "flowchart",
+          "questions": [
+            {
+              "question": "According to the pipeline, what happens if the tests fail?",
+              "options": [
+                "The developer is alerted",
+                "The code is deployed to production anyway",
+                "The build step is repeated",
+                "The Git push is reverted"
+              ],
+              "answer": "The developer is alerted"
+            },
+            {
+              "question": "What step comes right before deploying to production?",
+              "options": [
+                "Staging deploy",
+                "Build step",
+                "Git push",
+                "Test step"
+              ],
+              "answer": "Staging deploy"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "CI/CD",
+          "fullForm": "Continuous Integration / Continuous Deployment",
+          "options": [
+            "Continuous Integration / Continuous Deployment",
+            "Code Inspection / Code Delivery",
+            "Central Infrastructure / Cloud Deployment",
+            "Continuous Improvement / Continuous Development"
+          ],
+          "category": "devops"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 6,
+        "status": "published"
+      }
+    ]
+  }
+]

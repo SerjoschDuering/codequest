@@ -14,7 +14,6 @@ type Props = {
 }
 
 export function AcronymChallenge({ content, onAnswer }: Props) {
-  const [selected, setSelected] = useState<string | null>(null)
   const [typed, setTyped] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [timeLeft, setTimeLeft] = useState(content.timeLimitSeconds || 0)
@@ -33,11 +32,16 @@ export function AcronymChallenge({ content, onAnswer }: Props) {
     return () => clearTimeout(t)
   }, [timeLeft, hasTimer, submitted, onAnswer])
 
-  function handleSubmit() {
-    const answer = hasOptions ? selected || '' : typed.trim()
-    const correct = answer.toLowerCase() === content.fullForm.toLowerCase()
+  function handleOptionTap(opt: string) {
+    if (submitted) return
     setSubmitted(true)
-    onAnswer(answer, correct)
+    onAnswer(opt, opt.toLowerCase() === content.fullForm.toLowerCase())
+  }
+
+  function handleTypedSubmit() {
+    const answer = typed.trim()
+    setSubmitted(true)
+    onAnswer(answer, answer.toLowerCase() === content.fullForm.toLowerCase())
   }
 
   return (
@@ -58,21 +62,24 @@ export function AcronymChallenge({ content, onAnswer }: Props) {
 
       {hasOptions ? (
         <div className="flex flex-col gap-2">
-          {content.options!.map((opt) => (
-            <GlassCard
-              key={opt}
-              onClick={submitted ? undefined : () => setSelected(opt)}
-              className="!py-3 text-[15px]"
-              style={{
-                borderColor:
-                  submitted && opt === content.fullForm ? 'var(--color-success)' :
-                  submitted && opt === selected ? 'var(--color-danger)' :
-                  opt === selected ? 'var(--color-primary)' : 'var(--glass-border)',
-              }}
-            >
-              {opt}
-            </GlassCard>
-          ))}
+          {content.options!.map((opt) => {
+            let borderColor = 'var(--glass-border)'
+            if (submitted && opt.toLowerCase() === content.fullForm.toLowerCase()) borderColor = 'var(--color-success)'
+            else if (submitted) borderColor = 'var(--glass-border)'
+            return (
+              <GlassCard
+                key={opt}
+                onClick={() => handleOptionTap(opt)}
+                className="!py-3 text-[15px]"
+                style={{
+                  borderColor,
+                  opacity: submitted && opt.toLowerCase() !== content.fullForm.toLowerCase() ? 0.5 : 1,
+                }}
+              >
+                {opt}
+              </GlassCard>
+            )
+          })}
         </div>
       ) : (
         <input
@@ -90,12 +97,8 @@ export function AcronymChallenge({ content, onAnswer }: Props) {
           {content.fullForm}
         </p>
       )}
-      {!submitted && (
-        <GlassButton
-          onClick={handleSubmit}
-          disabled={hasOptions ? !selected : !typed.trim()}
-          fullWidth
-        >
+      {!submitted && !hasOptions && (
+        <GlassButton onClick={handleTypedSubmit} disabled={!typed.trim()} fullWidth>
           Submit
         </GlassButton>
       )}

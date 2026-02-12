@@ -1,0 +1,401 @@
+[
+  {
+    "title": "What is Machine Learning?",
+    "description": "Understand the basics of machine learning -- how computers learn from data instead of following hardcoded rules.",
+    "sortOrder": 1,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "How does machine learning differ from traditional programming?",
+          "options": [
+            "In ML, the computer learns patterns from data instead of following explicit step-by-step instructions",
+            "ML programs run faster than traditional programs",
+            "ML doesn't require any data to work",
+            "Traditional programs can't process numbers"
+          ],
+          "correctIndex": 0,
+          "explanation": "In traditional programming, a developer writes specific rules (if X then Y). In machine learning, you give the computer examples (data) and it figures out the patterns on its own. For example, instead of writing rules to detect spam, you show the ML model thousands of spam and non-spam emails and it learns what makes an email spam."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each type of machine learning to its description.",
+          "pairs": [
+            { "left": "Supervised Learning", "right": "Learns from labeled examples (input + correct answer)" },
+            { "left": "Unsupervised Learning", "right": "Finds hidden patterns in data without labels" },
+            { "left": "Reinforcement Learning", "right": "Learns by trial and error, receiving rewards or penalties" },
+            { "left": "Training Data", "right": "The dataset used to teach the model" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these steps in order to build a simple ML model that predicts house prices.",
+          "items": [
+            "Collect data about houses (size, location, number of rooms, sale price)",
+            "Clean and prepare the data (remove errors, handle missing values)",
+            "Split the data into training set and test set",
+            "Train the model on the training data",
+            "Evaluate the model's accuracy on the test set",
+            "Use the model to predict prices for new houses"
+          ],
+          "explanation": "Building an ML model follows a structured process: gather data, clean it, split it so you can test fairly, train the model, check how well it works, and then use it in the real world."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "In supervised learning, the model learns from _____ data, which means each example comes with the correct _____.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "labeled",
+              "acceptAlternatives": ["labelled", "tagged"]
+            },
+            {
+              "position": 1,
+              "answer": "answer",
+              "acceptAlternatives": ["label", "output", "result"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "  Traditional Programming:           Machine Learning:\n\n  ┌──────────┐                       ┌──────────┐\n  │  Rules   │                       │   Data   │\n  └────┬─────┘                       └────┬─────┘\n       │                                  │\n       v                                  v\n  ┌──────────┐                       ┌──────────┐\n  │  Data    │──> ┌────────┐         │ Learning │──> ┌────────┐\n  └──────────┘    │ Output │         │Algorithm │    │ Model  │\n                  └────────┘         └──────────┘    └───┬────┘\n                                                        │\n                                     ┌──────────┐       │\n                                     │ New Data │───────┘\n                                     └──────────┘       │\n                                                        v\n                                                   ┌────────┐\n                                                   │ Output │\n                                                   └────────┘",
+          "diagramType": "flowchart",
+          "questions": [
+            {
+              "question": "In traditional programming, what two things are combined to produce output?",
+              "options": [
+                "Rules and Data",
+                "Data and a Model",
+                "A Learning Algorithm and Rules",
+                "New Data and Old Data"
+              ],
+              "answer": "Rules and Data"
+            },
+            {
+              "question": "In machine learning, what does the learning algorithm produce?",
+              "options": [
+                "A model",
+                "More rules",
+                "A database",
+                "A website"
+              ],
+              "answer": "A model"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "ML",
+          "fullForm": "Machine Learning",
+          "options": [
+            "Machine Learning",
+            "Meta Language",
+            "Model Library",
+            "Memory Logic"
+          ],
+          "category": "ai"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 6,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "Training, Inference & Lifecycle",
+    "description": "Explore the ML lifecycle -- from training a model on data, to using it for predictions, to deploying it in the real world.",
+    "sortOrder": 2,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is an 'epoch' in machine learning training?",
+          "options": [
+            "One complete pass through the entire training dataset",
+            "The final accuracy score of a model",
+            "A type of neural network layer",
+            "The time it takes to deploy a model"
+          ],
+          "correctIndex": 0,
+          "explanation": "An epoch is one full cycle through all the training data. Models usually train for many epochs -- imagine reading a textbook multiple times to learn the material better. Each pass helps the model refine its understanding."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each ML training concept to its meaning.",
+          "pairs": [
+            { "left": "Training", "right": "The process where a model learns patterns from data" },
+            { "left": "Inference", "right": "Using a trained model to make predictions on new data" },
+            { "left": "Overfitting", "right": "The model memorizes training data but fails on new data" },
+            { "left": "Underfitting", "right": "The model is too simple to capture patterns in the data" },
+            { "left": "Loss Function", "right": "Measures how wrong the model's predictions are" }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these stages of the ML model lifecycle in order.",
+          "items": [
+            "Define the problem and collect relevant data",
+            "Preprocess and clean the data",
+            "Train the model and tune hyperparameters",
+            "Evaluate model performance on test data",
+            "Deploy the model to production",
+            "Monitor performance and retrain when needed"
+          ],
+          "explanation": "The ML lifecycle is iterative: you start by defining what you want to predict, prepare your data, train and evaluate, deploy to production, and then continuously monitor. If performance drops, you retrain with new data."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "When a model performs well on training data but poorly on new unseen data, it is called _____. The opposite problem, where the model is too simple to learn, is called _____.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "overfitting",
+              "acceptAlternatives": ["over-fitting", "over fitting"]
+            },
+            {
+              "position": 1,
+              "answer": "underfitting",
+              "acceptAlternatives": ["under-fitting", "under fitting"]
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "                    Training Phase                    Inference Phase\n\n  ┌────────────┐    ┌─────────────┐    ┌────────┐    ┌────────────┐    ┌────────────┐\n  │  Training  │───>│  Learning   │───>│ Trained│───>│  New Input │───>│ Prediction │\n  │   Data     │    │  Algorithm  │    │ Model  │    │   Data     │    │  (Output)  │\n  └────────────┘    └──────┬──────┘    └────────┘    └────────────┘    └────────────┘\n                           │\n                    ┌──────┴──────┐\n                    │    Loss     │\n                    │  Function   │\n                    │ (error      │\n                    │  feedback)  │\n                    └─────────────┘",
+          "diagramType": "flowchart",
+          "questions": [
+            {
+              "question": "What role does the loss function play during training?",
+              "options": [
+                "It provides error feedback to help the model improve",
+                "It generates new training data",
+                "It deploys the model to production",
+                "It stores the model's predictions"
+              ],
+              "answer": "It provides error feedback to help the model improve"
+            },
+            {
+              "question": "During inference, what goes into the trained model?",
+              "options": [
+                "New input data",
+                "The loss function",
+                "More training data",
+                "The learning algorithm"
+              ],
+              "answer": "New input data"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "A model trained to recognize cats was shown 10,000 cat photos and now identifies every cat perfectly -- but fails to recognize cats in real-world photos with different backgrounds. What is this problem called?",
+          "options": [
+            "Overfitting",
+            "Underfitting",
+            "Inference error",
+            "Data preprocessing"
+          ],
+          "correctIndex": 0,
+          "explanation": "This is overfitting -- the model memorized the training data (including specific backgrounds and lighting) instead of learning generalizable features of cats. It performs great on training data but poorly on new, unseen data. Think of it like a student who memorizes test answers but can't apply concepts to new problems."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 6,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "Classification & Regression",
+    "description": "Learn the two main types of ML predictions: classifying things into categories and predicting continuous numbers.",
+    "sortOrder": 3,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "Which of the following is a classification task?",
+          "options": [
+            "Determining whether an email is spam or not spam",
+            "Predicting tomorrow's temperature in degrees",
+            "Estimating the price of a house",
+            "Forecasting next month's sales revenue"
+          ],
+          "correctIndex": 0,
+          "explanation": "Classification assigns data to categories (spam vs. not spam, cat vs. dog, positive vs. negative). The other options predict continuous numbers (temperature, price, revenue), which makes them regression tasks."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each real-world task to whether it is classification or regression.",
+          "pairs": [
+            { "left": "Is this photo a cat or dog?", "right": "Classification" },
+            { "left": "How much will this house sell for?", "right": "Regression" },
+            { "left": "Is this transaction fraudulent?", "right": "Classification" },
+            { "left": "What will the stock price be tomorrow?", "right": "Regression" },
+            { "left": "Which genre does this movie belong to?", "right": "Classification" },
+            { "left": "How many minutes until the bus arrives?", "right": "Regression" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "_____ predicts discrete categories (like 'cat' or 'dog'), while _____ predicts continuous numerical values (like price or temperature).",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "Classification",
+              "acceptAlternatives": ["classification"]
+            },
+            {
+              "position": 1,
+              "answer": "Regression",
+              "acceptAlternatives": ["regression"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these steps in order to evaluate a classification model using a confusion matrix.",
+          "items": [
+            "Train the classification model on labeled training data",
+            "Run the model on the test data to get predictions",
+            "Compare each prediction to the actual correct label",
+            "Count true positives, true negatives, false positives, and false negatives",
+            "Calculate metrics like accuracy and precision from the counts"
+          ],
+          "explanation": "A confusion matrix is built by comparing predictions vs. actual labels. You count how many the model got right (true positives/negatives) and wrong (false positives/negatives), then use those counts to calculate performance metrics."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "               Confusion Matrix (Spam Classifier)\n\n                          Predicted\n                    ┌─────────┬──────────┐\n                    │  Spam   │ Not Spam │\n         ┌──────────┼─────────┼──────────┤\n         │  Spam    │   45    │    5     │\n  Actual │          │  (TP)   │  (FN)    │\n         ├──────────┼─────────┼──────────┤\n         │ Not Spam │    3    │   47     │\n         │          │  (FP)   │  (TN)    │\n         └──────────┴─────────┴──────────┘\n\n         TP = True Positive    FP = False Positive\n         FN = False Negative   TN = True Negative",
+          "diagramType": "component",
+          "questions": [
+            {
+              "question": "How many emails did the model correctly identify as spam?",
+              "options": [
+                "45 (True Positives)",
+                "47 (True Negatives)",
+                "5 (False Negatives)",
+                "3 (False Positives)"
+              ],
+              "answer": "45 (True Positives)"
+            },
+            {
+              "question": "What does the '3 (FP)' cell represent?",
+              "options": [
+                "Non-spam emails the model incorrectly marked as spam",
+                "Spam emails the model correctly caught",
+                "Spam emails the model missed",
+                "Non-spam emails correctly identified"
+              ],
+              "answer": "Non-spam emails the model incorrectly marked as spam"
+            },
+            {
+              "question": "Out of 100 total emails, how many did the model classify correctly?",
+              "options": [
+                "92 (45 TP + 47 TN)",
+                "50 (45 TP + 5 FN)",
+                "48 (45 TP + 3 FP)",
+                "8 (5 FN + 3 FP)"
+              ],
+              "answer": "92 (45 TP + 47 TN)"
+            }
+          ]
+        },
+        "difficulty": 3,
+        "xpReward": 20,
+        "sortOrder": 5,
+        "status": "published"
+      }
+    ]
+  }
+]

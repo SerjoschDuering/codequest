@@ -1,0 +1,340 @@
+[
+  {
+    "title": "Neural Networks",
+    "description": "Understand the building blocks of deep learning — neurons, layers, activation functions, and how neural networks learn through forward pass and backpropagation.",
+    "sortOrder": 4,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is an artificial neuron in a neural network?",
+          "options": [
+            "A mathematical function that takes inputs, multiplies them by weights, adds a bias, and passes the result through an activation function",
+            "A tiny computer chip that mimics a brain cell",
+            "A type of database that stores training data",
+            "A random number generator used to initialize models"
+          ],
+          "correctIndex": 0,
+          "explanation": "An artificial neuron is inspired by biological neurons but is purely mathematical. It takes multiple inputs (numbers), multiplies each by a weight (importance), sums them up, adds a bias (offset), and then passes the total through an activation function. Think of it like a tiny decision-maker: it weighs the evidence, sums it up, and decides how strongly to 'fire'."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each neural network layer type with its role:",
+          "pairs": [
+            { "left": "Input layer", "right": "Receives the raw data (pixels, text, numbers) and passes it forward" },
+            { "left": "Hidden layer", "right": "Processes and transforms data — where patterns are learned" },
+            { "left": "Output layer", "right": "Produces the final prediction or classification result" },
+            { "left": "ReLU activation", "right": "Outputs the input if positive, otherwise outputs zero" },
+            { "left": "Sigmoid activation", "right": "Squashes any value into a range between 0 and 1" }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Order the steps of how a neural network learns (one training cycle):",
+          "items": [
+            "Input data is fed into the input layer (forward pass begins)",
+            "Data flows through hidden layers — each neuron applies weights, bias, and activation",
+            "The output layer produces a prediction",
+            "The prediction is compared to the correct answer using a loss function",
+            "Backpropagation calculates how much each weight contributed to the error",
+            "Weights are adjusted (updated) to reduce the error for next time"
+          ],
+          "explanation": "Training follows a cycle: forward pass (data flows in, prediction comes out), loss calculation (how wrong was it?), backpropagation (trace the error back through the network to find which weights caused it), and weight update (adjust weights to do better next time). This cycle repeats thousands of times."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "A neural network with many _____ layers between input and output is called a _____ neural network, which is the basis of _____ learning.",
+          "blanks": [
+            { "position": 0, "answer": "hidden", "acceptAlternatives": ["intermediate"] },
+            { "position": 1, "answer": "deep", "acceptAlternatives": ["deep"] },
+            { "position": 2, "answer": "deep", "acceptAlternatives": ["deep"] }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "  Input Layer    Hidden Layer 1   Hidden Layer 2    Output Layer\n\n    ┌───┐           ┌───┐           ┌───┐           ┌───┐\n    │ x1│──────────→│ h1│──────────→│ h4│──────────→│ y1│\n    └───┘     ╲     └───┘     ╲     └───┘     ╱     └───┘\n               ╲               ╲             ╱\n    ┌───┐       ╲   ┌───┐       ╲   ┌───┐  ╱       ┌───┐\n    │ x2│────────╲─→│ h2│────────╲─→│ h5│─╱────────→│ y2│\n    └───┘         ╲ └───┘         ╲ └───┘╱          └───┘\n                   ╲               ╲   ╱\n    ┌───┐           ┌───┐           ┌───┐\n    │ x3│──────────→│ h3│──────────→│ h6│\n    └───┘           └───┘           └───┘",
+          "diagramType": "component",
+          "questions": [
+            {
+              "question": "How many hidden layers does this neural network have?",
+              "options": ["1", "2", "3", "4"],
+              "answer": "2"
+            },
+            {
+              "question": "Would this network be considered a 'deep' neural network?",
+              "options": ["Yes, because it has multiple hidden layers", "No, because it only has 2 outputs", "No, because it needs at least 10 layers", "Yes, because it has 3 inputs"],
+              "answer": "Yes, because it has multiple hidden layers"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "ReLU",
+          "fullForm": "Rectified Linear Unit",
+          "options": [
+            "Rectified Linear Unit",
+            "Recurrent Learning Update",
+            "Reinforced Layer Utility",
+            "Rapid Execution Logic Unit"
+          ],
+          "category": "ml"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 6,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "Embeddings & Vector Databases",
+    "description": "Explore how AI represents meaning as numbers, what vector similarity means, and how vector databases power search, recommendations, and RAG.",
+    "sortOrder": 5,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "Why are embeddings useful in AI applications?",
+          "options": [
+            "They let computers understand the meaning and similarity of text by representing it as numerical vectors in a high-dimensional space",
+            "They compress images to take up less storage space",
+            "They encrypt data so it cannot be read by unauthorized users",
+            "They speed up network connections between servers"
+          ],
+          "correctIndex": 0,
+          "explanation": "Embeddings are the bridge between human language and math. By converting text (or images, audio) into vectors — lists of numbers like [0.12, -0.45, 0.78, ...] — computers can measure how similar two pieces of content are. 'King' and 'Queen' would have close vectors because they share meaning, while 'King' and 'Banana' would be far apart. This powers search, recommendations, and RAG systems."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each vector database or concept with its description:",
+          "pairs": [
+            { "left": "Cosine similarity", "right": "Measures the angle between two vectors — closer to 1 means more similar" },
+            { "left": "Qdrant", "right": "An open-source vector database written in Rust, great for self-hosting" },
+            { "left": "Pinecone", "right": "A managed cloud vector database — no infrastructure to maintain" },
+            { "left": "Weaviate", "right": "A vector database with built-in vectorization modules and GraphQL API" },
+            { "left": "Embedding dimension", "right": "The length of the vector — e.g. 768 or 1536 numbers per embedding" }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Order the steps to build a semantic search system using embeddings:",
+          "items": [
+            "Collect and clean your documents (articles, product descriptions, etc.)",
+            "Split documents into manageable chunks of text",
+            "Run each chunk through an embedding model to get a vector",
+            "Store vectors and their metadata in a vector database",
+            "When a user searches, embed their query into a vector",
+            "Find the closest vectors in the database and return matching documents"
+          ],
+          "explanation": "Building semantic search follows this pipeline: prepare your data, chunk it, embed each chunk into vectors, store them in a vector database, then at search time embed the user's query and find the nearest vectors. The closest vectors represent the most semantically similar documents."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "_____ similarity is the most common way to measure how close two embedding vectors are, with a score of 1 meaning _____ and 0 meaning completely _____.",
+          "blanks": [
+            { "position": 0, "answer": "Cosine", "acceptAlternatives": ["cosine"] },
+            { "position": 1, "answer": "identical", "acceptAlternatives": ["the same", "similar", "exactly similar", "perfectly similar"] },
+            { "position": 2, "answer": "different", "acceptAlternatives": ["unrelated", "dissimilar", "orthogonal"] }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "┌────────────────┐\n│  Your Data     │\n│  (Documents,   │\n│   Products,    │\n│   Code)        │\n└───────┬────────┘\n        │ chunk & embed\n        ▼\n┌────────────────┐     ┌─────────────────┐\n│  Vector DB     │     │  User Query     │\n│  ┌─── [0.2,    │     │  \"best running  │\n│  │    0.8,     │     │   shoes\"        │\n│  │   -0.1]     │     └────────┬────────┘\n│  ├─── [0.9,    │              │ embed\n│  │    0.1,     │              ▼\n│  │    0.5]     │     ┌─────────────────┐\n│  ├─── ...      │←────│  Query Vector   │\n│  └────         │find │  [0.3, 0.7,     │\n│                │near │   -0.2]         │\n└───────┬────────┘     └─────────────────┘\n        │ top matches\n        ▼\n┌────────────────┐\n│  Results:      │\n│  Nike Air Max  │\n│  Adidas Ultra  │\n│  Brooks Ghost  │\n└────────────────┘",
+          "diagramType": "architecture",
+          "questions": [
+            {
+              "question": "What happens to the user's query before it can be compared against the stored vectors?",
+              "options": ["It is translated to SQL", "It is embedded into a vector", "It is compressed into a hash", "It is split into keywords"],
+              "answer": "It is embedded into a vector"
+            },
+            {
+              "question": "How does the vector database find relevant results?",
+              "options": ["Exact keyword matching", "Finding vectors that are numerically closest to the query vector", "Random sampling from the database", "Alphabetical sorting of document titles"],
+              "answer": "Finding vectors that are numerically closest to the query vector"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "ANN",
+          "fullForm": "Approximate Nearest Neighbor",
+          "options": [
+            "Approximate Nearest Neighbor",
+            "Artificial Neural Network",
+            "Automated Node Navigation",
+            "Adaptive Noise Normalization"
+          ],
+          "category": "ml"
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 6,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "Computer Vision",
+    "description": "See how AI understands images — from pixels to convolutional neural networks, object detection, and real-world applications like self-driving cars and medical imaging.",
+    "sortOrder": 6,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "How does a computer 'see' an image?",
+          "options": [
+            "As a grid of pixels, where each pixel is represented by numbers for red, green, and blue color intensity (0-255)",
+            "As a text description of what the image contains",
+            "As a single large number that encodes the entire picture",
+            "As a list of object names found in the image"
+          ],
+          "correctIndex": 0,
+          "explanation": "To a computer, an image is just a grid (matrix) of numbers. A color image has 3 layers (channels): Red, Green, and Blue. Each pixel has 3 values from 0 to 255. For example, pure red is (255, 0, 0) and white is (255, 255, 255). A 1920x1080 image is actually three 1920x1080 grids of numbers stacked together. Computer vision is about teaching AI to find meaning in these number grids."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each computer vision concept with its description:",
+          "pairs": [
+            { "left": "Convolution", "right": "A small filter that slides over the image to detect patterns like edges or textures" },
+            { "left": "CNN", "right": "A neural network architecture designed specifically for processing image data" },
+            { "left": "Image classification", "right": "Predicting what category an entire image belongs to (e.g. 'cat' or 'dog')" },
+            { "left": "Object detection", "right": "Finding and locating multiple objects within an image with bounding boxes" },
+            { "left": "Pooling", "right": "Reducing image dimensions while keeping important features (e.g. max pooling)" }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "A _____ Neural Network (CNN) uses special layers called _____ layers that slide small filters over the image to detect features like edges, shapes, and textures at different scales.",
+          "blanks": [
+            { "position": 0, "answer": "Convolutional", "acceptAlternatives": ["convolutional"] },
+            { "position": 1, "answer": "convolutional", "acceptAlternatives": ["convolution", "conv"] }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Order the layers in a typical CNN from input to output:",
+          "items": [
+            "Input layer receives the raw image as a grid of pixel values",
+            "Convolutional layers detect low-level features (edges, corners, colors)",
+            "Deeper convolutional layers detect high-level features (eyes, wheels, text)",
+            "Pooling layers reduce the spatial size to keep computation manageable",
+            "Flatten layer converts the 2D feature maps into a 1D vector",
+            "Fully connected layers combine all features to make the final prediction"
+          ],
+          "explanation": "A CNN processes images in stages: raw pixels come in, early convolution layers detect simple features like edges, deeper layers combine those into complex features (like faces or objects), pooling shrinks the data, flattening reshapes it for the final layers, and fully connected layers produce the classification or detection output."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "  Input Image     Conv Layer 1     Conv Layer 2      Pooling        Output\n\n ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌────────┐    ┌────────┐\n │          │    │ Edges    │    │ Shapes   │    │Reduced │    │        │\n │  224x224 │───→│ Corners  │───→│ Textures │───→│Features│───→│ \"Cat\"  │\n │  pixels  │    │ Colors   │    │ Parts    │    │        │    │ 95%    │\n │          │    │          │    │          │    │        │    │        │\n └──────────┘    └──────────┘    └──────────┘    └────────┘    └────────┘\n   Raw data      Low-level       High-level      Compress      Classify\n                 features        features",
+          "diagramType": "component",
+          "questions": [
+            {
+              "question": "What does the first convolutional layer typically detect?",
+              "options": ["Complete objects like cats and dogs", "Low-level features like edges, corners, and colors", "Only the background of the image", "Text and labels in the image"],
+              "answer": "Low-level features like edges, corners, and colors"
+            },
+            {
+              "question": "What is the purpose of the pooling layer in this CNN?",
+              "options": ["To add more detail to the image", "To reduce the size of feature maps while keeping important information", "To colorize black-and-white images", "To store the image in a database"],
+              "answer": "To reduce the size of feature maps while keeping important information"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      }
+    ]
+  }
+]

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { GlassCard, GlassButton } from '~/design-system'
 
 type Question = { question: string; options?: string[]; answer: string }
@@ -12,12 +12,28 @@ type Props = {
 export function DiagramQuiz({ content, onAnswer }: Props) {
   const [answers, setAnswers] = useState<string[]>(content.questions.map(() => ''))
   const [submitted, setSubmitted] = useState(false)
+  const submittedRef = useRef(false)
 
-  function handleSubmit() {
+  const allOptionBased = content.questions.every(q => q.options && q.options.length > 0)
+  const allFilled = answers.every(a => a.trim())
+
+  // Auto-submit when all option-based questions answered
+  useEffect(() => {
+    if (submittedRef.current || !allOptionBased || !allFilled) return
+    submittedRef.current = true
     const correct = content.questions.every((q, i) =>
       answers[i].trim().toLowerCase() === q.answer.toLowerCase()
     )
     setSubmitted(true)
+    setTimeout(() => onAnswer(answers, correct), 400)
+  }, [answers, allOptionBased, allFilled, content.questions, onAnswer])
+
+  function handleManualSubmit() {
+    const correct = content.questions.every((q, i) =>
+      answers[i].trim().toLowerCase() === q.answer.toLowerCase()
+    )
+    setSubmitted(true)
+    submittedRef.current = true
     onAnswer(answers, correct)
   }
 
@@ -63,8 +79,8 @@ export function DiagramQuiz({ content, onAnswer }: Props) {
           )}
         </div>
       ))}
-      {!submitted && (
-        <GlassButton onClick={handleSubmit} disabled={answers.some(a => !a.trim())} fullWidth>
+      {!submitted && !allOptionBased && (
+        <GlassButton onClick={handleManualSubmit} disabled={!allFilled} fullWidth>
           Check Answers
         </GlassButton>
       )}

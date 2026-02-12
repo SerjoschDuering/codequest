@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { GlassButton } from '~/design-system'
 
 type Content = {
   code: string
@@ -21,10 +20,11 @@ export function SpotTheBug({ content, onAnswer }: Props) {
   const [submitted, setSubmitted] = useState(false)
   const [showHint, setShowHint] = useState(false)
 
-  function handleSubmit() {
-    if (selectedLine === null) return
+  function handleLineTap(lineNum: number) {
+    if (submitted) return
+    setSelectedLine(lineNum)
     setSubmitted(true)
-    onAnswer(selectedLine, selectedLine === content.bugLine)
+    onAnswer(lineNum, lineNum === content.bugLine)
   }
 
   return (
@@ -36,14 +36,13 @@ export function SpotTheBug({ content, onAnswer }: Props) {
           let bg = 'transparent'
           if (submitted && lineNum === content.bugLine) bg = 'rgba(255,59,48,0.2)'
           else if (submitted && lineNum === selectedLine && lineNum !== content.bugLine) bg = 'rgba(255,149,0,0.2)'
-          else if (lineNum === selectedLine) bg = 'rgba(0,122,255,0.15)'
 
           return (
             <div
               key={i}
               className="flex cursor-pointer hover:bg-white/5 px-2"
               style={{ background: bg }}
-              onClick={submitted ? undefined : () => setSelectedLine(lineNum)}
+              onClick={() => handleLineTap(lineNum)}
             >
               <span className="text-xs w-8 shrink-0 text-right pr-3 py-1 select-none" style={{ color: '#858585' }}>
                 {lineNum}
@@ -70,11 +69,6 @@ export function SpotTheBug({ content, onAnswer }: Props) {
             {content.fixedCode}
           </pre>
         </div>
-      )}
-      {!submitted && (
-        <GlassButton onClick={handleSubmit} disabled={selectedLine === null} fullWidth>
-          Found it!
-        </GlassButton>
       )}
     </div>
   )

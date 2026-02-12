@@ -1,0 +1,382 @@
+[
+  {
+    "title": "Frontend vs Backend",
+    "description": "Learn what runs in the browser and what runs on the server",
+    "sortOrder": 1,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "Which of the following technologies runs in the user's web browser?",
+          "options": [
+            "JavaScript with HTML and CSS",
+            "Python with Django",
+            "PostgreSQL database",
+            "Node.js server"
+          ],
+          "correctIndex": 0,
+          "explanation": "JavaScript, HTML, and CSS are the core frontend technologies. They run directly in the user's browser to create the visual interface and interactivity. Python, databases, and Node.js all run on a server (the backend)."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each technology to the side it belongs to (Frontend or Backend)",
+          "pairs": [
+            { "left": "HTML", "right": "Frontend — structures the page" },
+            { "left": "CSS", "right": "Frontend — styles the page" },
+            { "left": "Node.js", "right": "Backend — runs on the server" },
+            { "left": "PostgreSQL", "right": "Backend — stores data in a database" },
+            { "left": "JavaScript (in browser)", "right": "Frontend — adds interactivity" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "The _____ is the part of a web app that users see and interact with, while the _____ handles data, logic, and storage on the server.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "frontend",
+              "acceptAlternatives": ["front-end", "front end", "client"]
+            },
+            {
+              "position": 1,
+              "answer": "backend",
+              "acceptAlternatives": ["back-end", "back end", "server"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "┌─────────────────────┐         ┌─────────────────────┐\n│      BROWSER        │         │       SERVER         │\n│   (Frontend)        │         │     (Backend)        │\n│                     │         │                      │\n│  ┌───┐ ┌───┐ ┌──┐  │  HTTP   │  ┌──────┐ ┌──────┐  │\n│  │HTML│ │CSS│ │JS│  │ ──────► │  │ API  │ │  DB  │  │\n│  └───┘ └───┘ └──┘  │         │  │Routes│ │      │  │\n│                     │ ◄────── │  └──────┘ └──────┘  │\n│  What the user sees │Response │  Logic & Data        │\n└─────────────────────┘         └─────────────────────┘",
+          "diagramType": "architecture",
+          "questions": [
+            {
+              "question": "In this diagram, where does HTML, CSS, and JavaScript run?",
+              "options": [
+                "In the Browser (Frontend)",
+                "On the Server (Backend)",
+                "In the Database",
+                "Nowhere — they are not shown"
+              ],
+              "answer": "In the Browser (Frontend)"
+            },
+            {
+              "question": "What protocol does the browser use to communicate with the server?",
+              "options": [
+                "HTTP",
+                "FTP",
+                "SMTP",
+                "SQL"
+              ],
+              "answer": "HTTP"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "CSS",
+          "fullForm": "Cascading Style Sheets",
+          "options": [
+            "Cascading Style Sheets",
+            "Computer Style System",
+            "Creative Styling Syntax",
+            "Coded Style Sheets"
+          ],
+          "category": "web"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 5,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "APIs — How Apps Talk",
+    "description": "Discover how applications communicate using APIs, HTTP methods, and JSON",
+    "sortOrder": 2,
+    "xpReward": 60,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What does an API do in web development?",
+          "options": [
+            "It lets different software applications communicate with each other",
+            "It styles the appearance of a website",
+            "It stores files on a hard drive",
+            "It compiles code into machine language"
+          ],
+          "correctIndex": 0,
+          "explanation": "An API (Application Programming Interface) is a set of rules that allows different software programs to talk to each other. Think of it like a waiter in a restaurant: you (the frontend) tell the waiter (the API) what you want, the waiter takes your order to the kitchen (the backend), and brings back your food (the data)."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "code_completion",
+        "content": {
+          "prompt": "Complete this JavaScript code to make a GET request to an API endpoint and parse the JSON response.",
+          "codeTemplate": "const response = await ___BLANK1___(\"https://api.example.com/users\");\nconst data = await response.___BLANK2___();\nconsole.log(data);",
+          "blanks": [
+            {
+              "placeholder": "___BLANK1___",
+              "answer": "fetch",
+              "hints": ["This built-in browser function is used to make HTTP requests"]
+            },
+            {
+              "placeholder": "___BLANK2___",
+              "answer": "json",
+              "hints": ["This method parses the response body as JSON"]
+            }
+          ],
+          "language": "javascript"
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each HTTP method to what it does",
+          "pairs": [
+            { "left": "GET", "right": "Read / retrieve data" },
+            { "left": "POST", "right": "Create new data" },
+            { "left": "PUT", "right": "Update existing data (full replace)" },
+            { "left": "DELETE", "right": "Remove data" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these steps of an API request/response cycle in the correct order",
+          "items": [
+            "User clicks a button in the browser",
+            "Frontend JavaScript sends an HTTP request to the API endpoint",
+            "The server receives the request and processes it",
+            "The server queries the database for the needed data",
+            "The server sends back an HTTP response with JSON data",
+            "The frontend receives the response and updates the page"
+          ],
+          "explanation": "When a user interacts with a web app, the frontend sends an HTTP request to the server. The server processes it (often querying a database), then sends a response back. Finally, the frontend uses that response to update what the user sees."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "An HTTP status code of _____ means the request was successful, while a code of _____ means the resource was not found.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "200",
+              "acceptAlternatives": ["200 OK"]
+            },
+            {
+              "position": 1,
+              "answer": "404",
+              "acceptAlternatives": ["404 Not Found"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "guess_output",
+        "content": {
+          "code": "const response = { status: 201, body: { id: 42, name: \"Alice\" } };\nconsole.log(response.status);\nconsole.log(response.body.name);",
+          "language": "javascript",
+          "options": [
+            "201\nAlice",
+            "200\nAlice",
+            "{ status: 201 }\n{ name: \"Alice\" }",
+            "undefined\nundefined"
+          ],
+          "correctIndex": 0,
+          "explanation": "We access response.status which is 201, then response.body.name which is \"Alice\". The dot notation lets us dig into nested objects to get specific values. Status code 201 means \"Created\" — a new resource was successfully made."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 6,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "Serverless & Edge Computing",
+    "description": "Explore modern deployment models — from traditional servers to serverless functions and the edge",
+    "sortOrder": 3,
+    "xpReward": 60,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is the main idea behind 'serverless' computing?",
+          "options": [
+            "You write code as small functions, and the cloud provider manages all the servers for you",
+            "There are literally no servers involved — code runs on the user's device only",
+            "You must buy and maintain your own physical servers",
+            "Code is stored in the browser and never touches a server"
+          ],
+          "correctIndex": 0,
+          "explanation": "Despite the name, serverless does use servers! The key difference is that YOU don't manage them. You just write your function code, upload it, and the cloud provider (like AWS or Cloudflare) handles starting servers, scaling up when traffic increases, and shutting down when idle. You only pay for the time your code actually runs."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each concept to its description",
+          "pairs": [
+            { "left": "Traditional Server", "right": "An always-running machine you manage and pay for 24/7" },
+            { "left": "Serverless Function", "right": "Code that runs on-demand and scales automatically" },
+            { "left": "Cold Start", "right": "Delay when a serverless function starts after being idle" },
+            { "left": "Edge Computing", "right": "Running code in data centers close to the user" },
+            { "left": "CDN", "right": "A network that caches and delivers static files globally" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these steps in order: What happens when a user's request hits a serverless function that has been idle?",
+          "items": [
+            "A user in Tokyo makes a request to your API",
+            "The request is routed to the nearest edge location or cloud region",
+            "The cloud provider notices no instance is running (cold start begins)",
+            "A new container or isolate is created and your function code is loaded",
+            "Your function executes and processes the request",
+            "The response is sent back to the user"
+          ],
+          "explanation": "When a serverless function hasn't been used recently, the cloud provider needs to spin up a new instance — this is the 'cold start'. The request is routed to the best location, a fresh runtime is created, your code loads and runs, and then the response goes back to the user. Subsequent requests are faster because the instance is already warm."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "A _____ is a network of servers spread around the world that caches content close to users, while _____ computing goes further by running your actual code at those locations.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "CDN",
+              "acceptAlternatives": ["Content Delivery Network", "content delivery network"]
+            },
+            {
+              "position": 1,
+              "answer": "edge",
+              "acceptAlternatives": ["Edge"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "         TRADITIONAL                         SERVERLESS / EDGE\n\n  ┌──────────────────────┐        ┌─────────────────────────────────┐\n  │   User (anywhere)    │        │        User (anywhere)          │\n  └──────────┬───────────┘        └───────────────┬─────────────────┘\n             │                                    │\n             │ request                            │ request\n             ▼                                    ▼\n  ┌──────────────────────┐        ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐\n  │   Single Server      │        │Edge │  │Edge │  │Edge │  │Edge │\n  │   (one location)     │        │ NY  │  │ LDN │  │ TYO │  │ SYD │\n  │                      │        └─────┘  └─────┘  └─────┘  └─────┘\n  │  ┌────┐  ┌────┐      │          Runs code at nearest location\n  │  │ App│  │ DB │      │          to the user (low latency!)\n  │  └────┘  └────┘      │\n  └──────────────────────┘\n    All users hit this one\n    server (higher latency\n    for distant users)",
+          "diagramType": "architecture",
+          "questions": [
+            {
+              "question": "What is the key advantage of the edge model shown on the right?",
+              "options": [
+                "Code runs close to users worldwide, reducing latency",
+                "It uses only one server, which is simpler",
+                "It does not require any code to be written",
+                "It is always cheaper than a traditional server"
+              ],
+              "answer": "Code runs close to users worldwide, reducing latency"
+            },
+            {
+              "question": "In the traditional model on the left, what happens for a user in Sydney when the server is in New York?",
+              "options": [
+                "Their request travels a long distance, causing higher latency",
+                "A new server is automatically created in Sydney",
+                "The request is blocked entirely",
+                "Sydney users get a different version of the app"
+              ],
+              "answer": "Their request travels a long distance, causing higher latency"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "CDN",
+          "fullForm": "Content Delivery Network",
+          "options": [
+            "Content Delivery Network",
+            "Central Data Node",
+            "Cloud Deployment Network",
+            "Cached Distribution Node"
+          ],
+          "category": "web"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 6,
+        "status": "published"
+      }
+    ]
+  }
+]

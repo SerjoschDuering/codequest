@@ -1,0 +1,665 @@
+[
+  {
+    "title": "Meet AI Coding Agents",
+    "description": "Discover what AI coding agents are and how they write code for you",
+    "sortOrder": 1,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is the main difference between an AI coding agent (like Claude Code or Cursor) and a regular AI chatbot?",
+          "options": [
+            "An agent can autonomously read files, write code, and run commands — a chatbot only replies with text",
+            "An agent is always faster than a chatbot",
+            "A chatbot can write code but an agent cannot",
+            "There is no difference — they are the same thing"
+          ],
+          "correctIndex": 0,
+          "explanation": "AI coding agents go beyond chat. They can browse your codebase, create and edit files, run terminal commands, and iterate on errors — all autonomously. A chatbot just generates text responses you have to copy-paste yourself."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "Which of the following best describes the 'agentic coding loop'?",
+          "options": [
+            "Write code once and never change it",
+            "Plan what to do, write the code, test it, then iterate based on results",
+            "Copy code from Stack Overflow and paste it in",
+            "Ask the AI a question and accept the first answer"
+          ],
+          "correctIndex": 1,
+          "explanation": "The agentic loop is: Plan → Code → Test → Iterate. The agent thinks about what needs to be done, writes the code, runs tests or checks for errors, then fixes issues and repeats until the task is complete."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each AI coding tool to its correct description",
+          "pairs": [
+            { "left": "GitHub Copilot", "right": "Autocomplete-style AI that suggests code as you type in your editor" },
+            { "left": "Claude Code", "right": "CLI-based agent that reads your codebase, edits files, and runs commands" },
+            { "left": "Cursor", "right": "AI-powered code editor built on VS Code with integrated chat and agent mode" },
+            { "left": "ChatGPT", "right": "General-purpose chatbot that can discuss code but cannot directly edit your files" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put the steps of an AI coding agent's workflow in the correct order",
+          "items": [
+            "Read and understand the existing codebase",
+            "Plan what changes are needed",
+            "Write or edit the code",
+            "Run tests or check for errors",
+            "Fix any issues found and repeat if needed"
+          ],
+          "explanation": "An agent first reads your code to understand it, then plans its approach, writes the changes, tests them, and iterates until everything works. This plan-code-test-iterate loop is what makes agents powerful."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "An AI coding agent follows an _____ loop: Plan, Code, Test, and Iterate until the task is complete.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "agentic",
+              "acceptAlternatives": ["Agentic", "agent", "Agent"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "┌─────────────────────────────────────────┐\n│         AI Coding Agent Loop            │\n└─────────────────────────────────────────┘\n                    │\n                    ▼\n             ┌────────────┐\n             │   1. PLAN   │\n             │ Understand  │\n             │ the task    │\n             └─────┬──────┘\n                   │\n                   ▼\n             ┌────────────┐\n             │  2. CODE    │\n             │ Write/edit  │\n             │ files       │\n             └─────┬──────┘\n                   │\n                   ▼\n             ┌────────────┐\n             │  3. TEST    │\n             │ Run & check │\n             │ for errors  │\n             └─────┬──────┘\n                   │\n              ┌────┴────┐\n              ▼         ▼\n         ┌────────┐ ┌────────┐\n         │  Pass  │ │  Fail  │\n         │  Done! │ │ Fix it │\n         └────────┘ └───┬────┘\n                        │\n                        └──→ Back to PLAN",
+          "diagramType": "flowchart",
+          "questions": [
+            {
+              "question": "According to the diagram, what happens when the agent's test step fails?",
+              "options": [
+                "The agent gives up and stops",
+                "The agent goes back to the planning step to fix the issue",
+                "The agent asks the user to fix it manually",
+                "The agent deletes all the code"
+              ],
+              "answer": "The agent goes back to the planning step to fix the issue"
+            },
+            {
+              "question": "How many main steps are in the agentic coding loop before a pass/fail decision?",
+              "options": ["2", "3", "4", "5"],
+              "answer": "3"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 6,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "IDE",
+          "fullForm": "Integrated Development Environment",
+          "options": [
+            "Integrated Development Environment",
+            "Intelligent Data Engine",
+            "Internal Debugging Extension",
+            "Interactive Design Editor"
+          ],
+          "category": "ai"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 7,
+        "status": "published"
+      },
+      {
+        "type": "code_completion",
+        "content": {
+          "prompt": "Complete this prompt to ask an AI coding agent to create a function. Good prompts are specific about what you want.",
+          "codeTemplate": "// Asking an AI agent to help:\n// \"Create a JavaScript function called ___BLANK1___ \n//  that takes a number and returns true if it is ___BLANK2___\"",
+          "blanks": [
+            {
+              "placeholder": "___BLANK1___",
+              "answer": "isEven",
+              "hints": ["A common function name that checks if a number is divisible by 2"]
+            },
+            {
+              "placeholder": "___BLANK2___",
+              "answer": "even",
+              "hints": ["The opposite of odd"]
+            }
+          ],
+          "language": "javascript"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 8,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "Tokens & Context Windows",
+    "description": "Learn how AI models break text into tokens and why context windows matter",
+    "sortOrder": 2,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is a 'token' in the context of AI language models?",
+          "options": [
+            "A piece of a word or a small chunk of text that the AI processes — like a puzzle piece",
+            "A cryptocurrency used to pay for AI services",
+            "A special password to access the AI",
+            "A complete sentence that the AI reads at once"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tokens are the building blocks of how AI reads text. A token can be a whole short word (like 'the') or part of a longer word ('un' + 'believ' + 'able'). Think of tokens like puzzle pieces — the AI breaks your text into these small chunks before processing it."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "Why is the 'context window' important when working with AI coding agents?",
+          "options": [
+            "It determines the screen resolution of the AI interface",
+            "It is the maximum amount of text (input + output) the AI can consider at once — like its working memory",
+            "It controls how fast the AI generates code",
+            "It is the number of files on your computer"
+          ],
+          "correctIndex": 1,
+          "explanation": "The context window is like the AI's working memory — it can only 'see' a limited amount of text at a time. If your codebase is bigger than the context window, the agent needs strategies to focus on the most relevant parts. Larger context windows let the AI consider more code at once."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each AI model to its approximate context window size",
+          "pairs": [
+            { "left": "GPT-3.5", "right": "~4K tokens (small — about 3,000 words)" },
+            { "left": "GPT-4o", "right": "128K tokens (large — about a short novel)" },
+            { "left": "Claude 3.5 Sonnet", "right": "200K tokens (very large — multiple codebases)" },
+            { "left": "Gemini 1.5 Pro", "right": "1M+ tokens (massive — entire repositories)" }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "The _____ window is the maximum amount of text an AI model can process at once, measured in tokens.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "context",
+              "acceptAlternatives": ["Context"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "guess_output",
+        "content": {
+          "code": "# Python: How many tokens roughly?\ntext = \"Hello world\"\n# Rule of thumb: 1 token ≈ 4 characters in English\nestimated_tokens = len(text) / 4\nprint(int(estimated_tokens))",
+          "language": "python",
+          "options": ["2", "11", "44"],
+          "correctIndex": 0,
+          "explanation": "The string 'Hello world' has 11 characters. Dividing by 4 gives 2.75, and int() truncates to 2. In reality, 'Hello world' is exactly 2 tokens for most models — the rough rule of '1 token ≈ 4 characters' works surprisingly well for English text!"
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these context window sizes in order from SMALLEST to LARGEST",
+          "items": [
+            "4K tokens — early GPT-3.5",
+            "8K tokens — GPT-4 (original)",
+            "128K tokens — GPT-4o",
+            "200K tokens — Claude 3.5 Sonnet",
+            "1M+ tokens — Gemini 1.5 Pro"
+          ],
+          "explanation": "Context windows have grown dramatically. Early models could only handle a few pages of text (4K tokens), while modern models like Gemini 1.5 Pro can process over a million tokens — enough to read entire codebases at once."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 6,
+        "status": "published"
+      },
+      {
+        "type": "code_completion",
+        "content": {
+          "prompt": "Complete this JavaScript function that estimates the token count for a given text string using the 4-characters-per-token rule of thumb.",
+          "codeTemplate": "function estimateTokens(text) {\n  // Rule of thumb: ~4 chars per token\n  return Math.___BLANK1___(text.___BLANK2___ / 4);\n}",
+          "blanks": [
+            {
+              "placeholder": "___BLANK1___",
+              "answer": "ceil",
+              "hints": ["A Math method that rounds UP to the nearest integer"]
+            },
+            {
+              "placeholder": "___BLANK2___",
+              "answer": "length",
+              "hints": ["The property that gives you the number of characters in a string"]
+            }
+          ],
+          "language": "javascript"
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 7,
+        "status": "published"
+      },
+      {
+        "type": "acronym_challenge",
+        "content": {
+          "acronym": "LLM",
+          "fullForm": "Large Language Model",
+          "options": [
+            "Large Language Model",
+            "Low Latency Memory",
+            "Linear Logic Machine",
+            "Local Learning Module"
+          ],
+          "category": "ai"
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 8,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "Prompt Engineering",
+    "description": "Master the art of writing effective prompts to get the best results from AI coding tools",
+    "sortOrder": 3,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is the difference between 'zero-shot' and 'few-shot' prompting?",
+          "options": [
+            "Zero-shot gives no examples, few-shot includes examples of what you want",
+            "Zero-shot is faster, few-shot is slower",
+            "Zero-shot uses images, few-shot uses text only",
+            "There is no difference"
+          ],
+          "correctIndex": 0,
+          "explanation": "Zero-shot prompting means asking the AI to do something with no examples — you just describe the task. Few-shot prompting means including 1-3 examples of input→output in your prompt so the AI can see the pattern you want. Few-shot often produces better, more consistent results."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What is 'chain-of-thought' prompting?",
+          "options": [
+            "Asking the AI to respond with a blockchain hash",
+            "Telling the AI to think step-by-step before giving its final answer",
+            "Sending multiple prompts in a chain, one after another",
+            "Using AI to generate a linked list data structure"
+          ],
+          "correctIndex": 1,
+          "explanation": "Chain-of-thought (CoT) prompting asks the AI to 'think step by step' or 'show your reasoning.' This helps the AI break down complex problems and produces more accurate results — especially for coding tasks that require logic and planning."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each prompting technique to its description",
+          "pairs": [
+            { "left": "System prompt", "right": "Instructions that set the AI's role and behavior for the entire conversation" },
+            { "left": "Few-shot prompting", "right": "Including examples of desired input/output pairs in your prompt" },
+            { "left": "Role prompting", "right": "Telling the AI to act as a specific expert, like 'You are a senior React developer'" },
+            { "left": "Chain-of-thought", "right": "Asking the AI to reason step-by-step before answering" },
+            { "left": "Structured output", "right": "Requesting the AI to respond in a specific format like JSON or markdown" }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "code_completion",
+        "content": {
+          "prompt": "Complete this prompt template that uses few-shot prompting to get the AI to generate JSDoc comments. Fill in the blanks to complete the second example.",
+          "codeTemplate": "// Prompt template with few-shot examples:\n//\n// Example 1:\n// Input: function add(a, b) { return a + b; }\n// Output: /** @param {number} a @param {number} b @returns {number} */\n//\n// Example 2:\n// Input: function ___BLANK1___(name) { return `Hello, ${name}!`; }\n// Output: /** @param {___BLANK2___} name @returns {string} */",
+          "blanks": [
+            {
+              "placeholder": "___BLANK1___",
+              "answer": "greet",
+              "hints": ["A function name that means to say hello to someone"]
+            },
+            {
+              "placeholder": "___BLANK2___",
+              "answer": "string",
+              "hints": ["The JavaScript type for text data like a person's name"]
+            }
+          ],
+          "language": "javascript"
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put these prompt engineering steps in the best order for getting great results from an AI coding agent",
+          "items": [
+            "Define the AI's role (e.g., 'You are a senior JavaScript developer')",
+            "Describe the specific task clearly with context",
+            "Provide examples of desired input and output (few-shot)",
+            "Specify the output format you want (e.g., 'Return valid JSON')",
+            "Review the result and refine your prompt if needed"
+          ],
+          "explanation": "Effective prompting follows a pattern: first set the role, then describe the task with context, show examples, specify the format, and finally iterate. This structured approach consistently produces better AI outputs than vague one-line prompts."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "A _____ prompt sets the AI's role and behavior for the entire conversation, while a user prompt contains the specific request.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "system",
+              "acceptAlternatives": ["System"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 6,
+        "status": "published"
+      },
+      {
+        "type": "spot_the_bug",
+        "content": {
+          "code": "// BAD PROMPT to an AI coding agent:\n\n\"Make it better.\n\nFix the thing.\n\nYou know what I mean.\"",
+          "language": "javascript",
+          "bugLine": 3,
+          "bugDescription": "This prompt is vague and gives the AI no context. It does not specify WHAT to improve, WHERE the problem is, or WHAT 'better' means. The AI cannot read your mind — you need to be specific about the file, the issue, and the desired outcome.",
+          "fixedCode": "// GOOD PROMPT to an AI coding agent:\n\n\"In src/utils/auth.js, the login function\non line 42 returns undefined when the API\ncall fails. Add error handling with a\ntry-catch block that returns a meaningful\nerror object with status and message fields.\"",
+          "hints": [
+            "Think about what information the AI needs to do its job",
+            "Does this prompt tell the AI WHERE to look, WHAT is wrong, or HOW to fix it?"
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 7,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "┌────────────────────────────────────────┐\n│          Prompt Structure              │\n└────────────────────────────────────────┘\n\n┌──────────────────┐\n│  SYSTEM PROMPT   │  ← Sets role & rules\n│  \"You are a ...\" │     (stays constant)\n└───────┬──────────┘\n        │\n        ▼\n┌──────────────────┐\n│   USER PROMPT    │  ← Your request\n│  \"Build a ...\"   │     (changes each time)\n└───────┬──────────┘\n        │\n        ▼\n┌──────────────────┐\n│  FEW-SHOT        │  ← Optional examples\n│  EXAMPLES        │     (improve quality)\n│  Input → Output  │\n└───────┬──────────┘\n        │\n        ▼\n┌──────────────────┐\n│  AI RESPONSE     │  ← Generated output\n│  (code, text,    │\n│   JSON, etc.)    │\n└──────────────────┘",
+          "diagramType": "flowchart",
+          "questions": [
+            {
+              "question": "According to the diagram, which part of the prompt stays constant across requests?",
+              "options": [
+                "The user prompt",
+                "The system prompt",
+                "The few-shot examples",
+                "The AI response"
+              ],
+              "answer": "The system prompt"
+            },
+            {
+              "question": "Which part of the prompt structure is labeled as optional?",
+              "options": [
+                "System prompt",
+                "User prompt",
+                "Few-shot examples",
+                "AI response"
+              ],
+              "answer": "Few-shot examples"
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 8,
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "title": "Tool Use & Structured Output",
+    "description": "Learn how AI agents use tools and produce structured data to get real work done",
+    "sortOrder": 4,
+    "xpReward": 50,
+    "published": true,
+    "exercises": [
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "What does 'tool use' (also called 'function calling') mean in the context of AI coding agents?",
+          "options": [
+            "The AI can call predefined functions to interact with the outside world — like reading files, running commands, or searching the web",
+            "The AI physically uses hardware tools like a keyboard",
+            "The user must install special software plugins for the AI",
+            "The AI can only use tools that come with Python"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tool use means the AI can invoke specific functions during a conversation. For example, an AI coding agent might call a 'read_file' tool to see your code, a 'write_file' tool to make changes, or a 'run_command' tool to execute tests. This is what makes agents so powerful — they can take real actions, not just talk."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 1,
+        "status": "published"
+      },
+      {
+        "type": "multiple_choice",
+        "content": {
+          "question": "Why do AI coding agents use 'structured output' (like JSON) instead of plain text responses?",
+          "options": [
+            "JSON looks prettier than plain text",
+            "Structured output can be reliably parsed by code, making it possible to automatically process the AI's response",
+            "Plain text is not supported by modern AI models",
+            "Structured output is smaller and saves bandwidth"
+          ],
+          "correctIndex": 1,
+          "explanation": "When an AI returns structured data like JSON, your application can parse it reliably and take automated actions. For example, if you ask an AI to analyze code quality, getting back {\"score\": 8, \"issues\": [...]} is much more useful for automation than a paragraph of text. This is essential for tool orchestration."
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 2,
+        "status": "published"
+      },
+      {
+        "type": "matching",
+        "content": {
+          "prompt": "Match each AI agent tool to what it does",
+          "pairs": [
+            { "left": "read_file", "right": "Opens and reads the contents of a file in your project" },
+            { "left": "write_file", "right": "Creates or overwrites a file with new content" },
+            { "left": "run_command", "right": "Executes a terminal/shell command like npm test" },
+            { "left": "search_code", "right": "Finds specific patterns or text across your codebase" },
+            { "left": "edit_file", "right": "Makes targeted changes to specific lines in an existing file" }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 3,
+        "status": "published"
+      },
+      {
+        "type": "code_completion",
+        "content": {
+          "prompt": "Complete this JSON tool definition that tells an AI model about a 'search_files' function it can call. Tool definitions describe the function name, what it does, and what parameters it accepts.",
+          "codeTemplate": "{\n  \"name\": \"search_files\",\n  \"___BLANK1___\": \"Search for files matching a pattern in the project\",\n  \"parameters\": {\n    \"type\": \"___BLANK2___\",\n    \"properties\": {\n      \"pattern\": {\n        \"type\": \"string\",\n        \"description\": \"Glob pattern like *.js or src/**/*.ts\"\n      }\n    },\n    \"required\": [\"pattern\"]\n  }\n}",
+          "blanks": [
+            {
+              "placeholder": "___BLANK1___",
+              "answer": "description",
+              "hints": ["The field that explains what this tool does in plain English"]
+            },
+            {
+              "placeholder": "___BLANK2___",
+              "answer": "object",
+              "hints": ["The JSON Schema type for a collection of named properties"]
+            }
+          ],
+          "language": "javascript"
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 4,
+        "status": "published"
+      },
+      {
+        "type": "sequencing",
+        "content": {
+          "prompt": "Put the steps of an AI agent's tool-use cycle in the correct order",
+          "items": [
+            "The AI receives a user request (e.g., 'fix the bug in auth.js')",
+            "The AI decides which tool to call (e.g., read_file) and generates tool call JSON",
+            "The system executes the tool and returns the result to the AI",
+            "The AI processes the tool result and decides the next action",
+            "The AI repeats tool calls as needed until the task is complete, then responds to the user"
+          ],
+          "explanation": "Tool use follows a loop: the AI decides to call a tool, the system runs it, the result goes back to the AI, and it decides what to do next. This cycle repeats — an agent might read a file, then edit it, then run tests, then fix errors — until the job is done."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 5,
+        "status": "published"
+      },
+      {
+        "type": "guess_output",
+        "content": {
+          "code": "// An AI returns structured JSON output:\nconst response = JSON.parse(\n  '{\"status\": \"error\", \"line\": 42, \"message\": \"undefined variable\"}'\n);\n\nconsole.log(`Bug on line ${response.line}: ${response.message}`);",
+          "language": "javascript",
+          "options": [
+            "Bug on line 42: undefined variable",
+            "Bug on line undefined: null",
+            "{\"status\": \"error\", \"line\": 42}",
+            "Error: cannot parse JSON"
+          ],
+          "correctIndex": 0,
+          "explanation": "JSON.parse converts the JSON string into a JavaScript object. We can then access response.line (42) and response.message ('undefined variable') using dot notation. Template literals (`${}`) embed these values into the output string. This is why structured output is useful — it is easy to extract specific data from it."
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 6,
+        "status": "published"
+      },
+      {
+        "type": "diagram_quiz",
+        "content": {
+          "diagram": "┌──────────┐    ┌──────────────────┐    ┌──────────┐\n│          │    │                  │    │          │\n│   USER   │───→│    AI  MODEL     │───→│  TOOL    │\n│          │    │                  │    │  (e.g.   │\n│ \"Fix the │    │ Decides to call  │    │ read_    │\n│  bug\"    │    │ a tool           │    │ file)    │\n│          │    │                  │    │          │\n└──────────┘    └────────┬─────────┘    └────┬─────┘\n                         │                   │\n                         │    ┌──────────┐   │\n                         │    │          │   │\n                         │◄───│  RESULT  │◄──┘\n                         │    │ (file    │\n                         │    │ contents)│\n                         │    └──────────┘\n                         │\n                         ▼\n                ┌────────────────┐\n                │  AI decides    │\n                │  next action   │\n                │  or responds   │\n                │  to user       │\n                └────────────────┘",
+          "diagramType": "sequence",
+          "questions": [
+            {
+              "question": "In the tool-use flow shown, who executes the actual tool — the AI model or the system?",
+              "options": [
+                "The AI model executes the tool directly",
+                "The tool is a separate component — the system executes it and returns the result to the AI",
+                "The user executes the tool manually",
+                "Tools execute themselves automatically"
+              ],
+              "answer": "The tool is a separate component — the system executes it and returns the result to the AI"
+            },
+            {
+              "question": "After receiving the tool result, what does the AI model do?",
+              "options": [
+                "Always stops and waits for the user",
+                "Decides the next action — either call another tool or respond to the user",
+                "Deletes the result immediately",
+                "Sends the raw result directly to the user without processing"
+              ],
+              "answer": "Decides the next action — either call another tool or respond to the user"
+            }
+          ]
+        },
+        "difficulty": 2,
+        "xpReward": 15,
+        "sortOrder": 7,
+        "status": "published"
+      },
+      {
+        "type": "fill_in_blank",
+        "content": {
+          "sentence": "When an AI model needs to interact with external systems, it uses _____ calling (also known as tool use) to invoke predefined functions and receive their results.",
+          "blanks": [
+            {
+              "position": 0,
+              "answer": "function",
+              "acceptAlternatives": ["Function", "tool", "Tool"]
+            }
+          ]
+        },
+        "difficulty": 1,
+        "xpReward": 10,
+        "sortOrder": 8,
+        "status": "published"
+      }
+    ]
+  }
+]

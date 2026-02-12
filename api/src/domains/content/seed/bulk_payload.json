@@ -1,0 +1,3368 @@
+{
+  "courses": [
+    {
+      "title": "Web Dev Foundations",
+      "description": "Master the building blocks of modern web development — from frontend vs backend to APIs, databases, DNS, and deployment pipelines.",
+      "difficulty": "beginner",
+      "icon": "🌐",
+      "color": "#3B82F6",
+      "sortOrder": 1,
+      "published": true,
+      "lessons": [
+        {
+          "title": "Frontend vs Backend",
+          "description": "Learn what runs in the browser and what runs on the server",
+          "sortOrder": 1,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "Which of the following technologies runs in the user's web browser?",
+                "options": [
+                  "JavaScript with HTML and CSS",
+                  "Python with Django",
+                  "PostgreSQL database",
+                  "Node.js server"
+                ],
+                "correctIndex": 0,
+                "explanation": "JavaScript, HTML, and CSS are the core frontend technologies. They run directly in the user's browser to create the visual interface and interactivity. Python, databases, and Node.js all run on a server (the backend)."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each technology to the side it belongs to (Frontend or Backend)",
+                "pairs": [
+                  {
+                    "left": "HTML",
+                    "right": "Frontend — structures the page"
+                  },
+                  {
+                    "left": "CSS",
+                    "right": "Frontend — styles the page"
+                  },
+                  {
+                    "left": "Node.js",
+                    "right": "Backend — runs on the server"
+                  },
+                  {
+                    "left": "PostgreSQL",
+                    "right": "Backend — stores data in a database"
+                  },
+                  {
+                    "left": "JavaScript (in browser)",
+                    "right": "Frontend — adds interactivity"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "The _____ is the part of a web app that users see and interact with, while the _____ handles data, logic, and storage on the server.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "frontend",
+                    "acceptAlternatives": [
+                      "front-end",
+                      "front end",
+                      "client"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "backend",
+                    "acceptAlternatives": [
+                      "back-end",
+                      "back end",
+                      "server"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "┌─────────────────────┐         ┌─────────────────────┐\n│      BROWSER        │         │       SERVER         │\n│   (Frontend)        │         │     (Backend)        │\n│                     │         │                      │\n│  ┌───┐ ┌───┐ ┌──┐  │  HTTP   │  ┌──────┐ ┌──────┐  │\n│  │HTML│ │CSS│ │JS│  │ ──────► │  │ API  │ │  DB  │  │\n│  └───┘ └───┘ └──┘  │         │  │Routes│ │      │  │\n│                     │ ◄────── │  └──────┘ └──────┘  │\n│  What the user sees │Response │  Logic & Data        │\n└─────────────────────┘         └─────────────────────┘",
+                "diagramType": "architecture",
+                "questions": [
+                  {
+                    "question": "In this diagram, where does HTML, CSS, and JavaScript run?",
+                    "options": [
+                      "In the Browser (Frontend)",
+                      "On the Server (Backend)",
+                      "In the Database",
+                      "Nowhere — they are not shown"
+                    ],
+                    "answer": "In the Browser (Frontend)"
+                  },
+                  {
+                    "question": "What protocol does the browser use to communicate with the server?",
+                    "options": [
+                      "HTTP",
+                      "FTP",
+                      "SMTP",
+                      "SQL"
+                    ],
+                    "answer": "HTTP"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "CSS",
+                "fullForm": "Cascading Style Sheets",
+                "options": [
+                  "Cascading Style Sheets",
+                  "Computer Style System",
+                  "Creative Styling Syntax",
+                  "Coded Style Sheets"
+                ],
+                "category": "web"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "APIs — How Apps Talk",
+          "description": "Discover how applications communicate using APIs, HTTP methods, and JSON",
+          "sortOrder": 2,
+          "xpReward": 60,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What does an API do in web development?",
+                "options": [
+                  "It lets different software applications communicate with each other",
+                  "It styles the appearance of a website",
+                  "It stores files on a hard drive",
+                  "It compiles code into machine language"
+                ],
+                "correctIndex": 0,
+                "explanation": "An API (Application Programming Interface) is a set of rules that allows different software programs to talk to each other. Think of it like a waiter in a restaurant: you (the frontend) tell the waiter (the API) what you want, the waiter takes your order to the kitchen (the backend), and brings back your food (the data)."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Complete this JavaScript code to make a GET request to an API endpoint and parse the JSON response.",
+                "codeTemplate": "const response = await ___BLANK1___(\"https://api.example.com/users\");\nconst data = await response.___BLANK2___();\nconsole.log(data);",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK1___",
+                    "answer": "fetch",
+                    "hints": [
+                      "This built-in browser function is used to make HTTP requests"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK2___",
+                    "answer": "json",
+                    "hints": [
+                      "This method parses the response body as JSON"
+                    ]
+                  }
+                ],
+                "language": "javascript"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each HTTP method to what it does",
+                "pairs": [
+                  {
+                    "left": "GET",
+                    "right": "Read / retrieve data"
+                  },
+                  {
+                    "left": "POST",
+                    "right": "Create new data"
+                  },
+                  {
+                    "left": "PUT",
+                    "right": "Update existing data (full replace)"
+                  },
+                  {
+                    "left": "DELETE",
+                    "right": "Remove data"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these steps of an API request/response cycle in the correct order",
+                "items": [
+                  "User clicks a button in the browser",
+                  "Frontend JavaScript sends an HTTP request to the API endpoint",
+                  "The server receives the request and processes it",
+                  "The server queries the database for the needed data",
+                  "The server sends back an HTTP response with JSON data",
+                  "The frontend receives the response and updates the page"
+                ],
+                "explanation": "When a user interacts with a web app, the frontend sends an HTTP request to the server. The server processes it (often querying a database), then sends a response back. Finally, the frontend uses that response to update what the user sees."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "An HTTP status code of _____ means the request was successful, while a code of _____ means the resource was not found.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "200",
+                    "acceptAlternatives": [
+                      "200 OK"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "404",
+                    "acceptAlternatives": [
+                      "404 Not Found"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "guess_output",
+              "content": {
+                "code": "const response = { status: 201, body: { id: 42, name: \"Alice\" } };\nconsole.log(response.status);\nconsole.log(response.body.name);",
+                "language": "javascript",
+                "options": [
+                  "201\nAlice",
+                  "200\nAlice",
+                  "{ status: 201 }\n{ name: \"Alice\" }",
+                  "undefined\nundefined"
+                ],
+                "correctIndex": 0,
+                "explanation": "We access response.status which is 201, then response.body.name which is \"Alice\". The dot notation lets us dig into nested objects to get specific values. Status code 201 means \"Created\" — a new resource was successfully made."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Serverless & Edge Computing",
+          "description": "Explore modern deployment models — from traditional servers to serverless functions and the edge",
+          "sortOrder": 3,
+          "xpReward": 60,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is the main idea behind 'serverless' computing?",
+                "options": [
+                  "You write code as small functions, and the cloud provider manages all the servers for you",
+                  "There are literally no servers involved — code runs on the user's device only",
+                  "You must buy and maintain your own physical servers",
+                  "Code is stored in the browser and never touches a server"
+                ],
+                "correctIndex": 0,
+                "explanation": "Despite the name, serverless does use servers! The key difference is that YOU don't manage them. You just write your function code, upload it, and the cloud provider (like AWS or Cloudflare) handles starting servers, scaling up when traffic increases, and shutting down when idle. You only pay for the time your code actually runs."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each concept to its description",
+                "pairs": [
+                  {
+                    "left": "Traditional Server",
+                    "right": "An always-running machine you manage and pay for 24/7"
+                  },
+                  {
+                    "left": "Serverless Function",
+                    "right": "Code that runs on-demand and scales automatically"
+                  },
+                  {
+                    "left": "Cold Start",
+                    "right": "Delay when a serverless function starts after being idle"
+                  },
+                  {
+                    "left": "Edge Computing",
+                    "right": "Running code in data centers close to the user"
+                  },
+                  {
+                    "left": "CDN",
+                    "right": "A network that caches and delivers static files globally"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these steps in order: What happens when a user's request hits a serverless function that has been idle?",
+                "items": [
+                  "A user in Tokyo makes a request to your API",
+                  "The request is routed to the nearest edge location or cloud region",
+                  "The cloud provider notices no instance is running (cold start begins)",
+                  "A new container or isolate is created and your function code is loaded",
+                  "Your function executes and processes the request",
+                  "The response is sent back to the user"
+                ],
+                "explanation": "When a serverless function hasn't been used recently, the cloud provider needs to spin up a new instance — this is the 'cold start'. The request is routed to the best location, a fresh runtime is created, your code loads and runs, and then the response goes back to the user. Subsequent requests are faster because the instance is already warm."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "A _____ is a network of servers spread around the world that caches content close to users, while _____ computing goes further by running your actual code at those locations.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "CDN",
+                    "acceptAlternatives": [
+                      "Content Delivery Network",
+                      "content delivery network"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "edge",
+                    "acceptAlternatives": [
+                      "Edge"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "         TRADITIONAL                         SERVERLESS / EDGE\n\n  ┌──────────────────────┐        ┌─────────────────────────────────┐\n  │   User (anywhere)    │        │        User (anywhere)          │\n  └──────────┬───────────┘        └───────────────┬─────────────────┘\n             │                                    │\n             │ request                            │ request\n             ▼                                    ▼\n  ┌──────────────────────┐        ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐\n  │   Single Server      │        │Edge │  │Edge │  │Edge │  │Edge │\n  │   (one location)     │        │ NY  │  │ LDN │  │ TYO │  │ SYD │\n  │                      │        └─────┘  └─────┘  └─────┘  └─────┘\n  │  ┌────┐  ┌────┐      │          Runs code at nearest location\n  │  │ App│  │ DB │      │          to the user (low latency!)\n  │  └────┘  └────┘      │\n  └──────────────────────┘\n    All users hit this one\n    server (higher latency\n    for distant users)",
+                "diagramType": "architecture",
+                "questions": [
+                  {
+                    "question": "What is the key advantage of the edge model shown on the right?",
+                    "options": [
+                      "Code runs close to users worldwide, reducing latency",
+                      "It uses only one server, which is simpler",
+                      "It does not require any code to be written",
+                      "It is always cheaper than a traditional server"
+                    ],
+                    "answer": "Code runs close to users worldwide, reducing latency"
+                  },
+                  {
+                    "question": "In the traditional model on the left, what happens for a user in Sydney when the server is in New York?",
+                    "options": [
+                      "Their request travels a long distance, causing higher latency",
+                      "A new server is automatically created in Sydney",
+                      "The request is blocked entirely",
+                      "Sydney users get a different version of the app"
+                    ],
+                    "answer": "Their request travels a long distance, causing higher latency"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "CDN",
+                "fullForm": "Content Delivery Network",
+                "options": [
+                  "Content Delivery Network",
+                  "Central Data Node",
+                  "Cloud Deployment Network",
+                  "Cached Distribution Node"
+                ],
+                "category": "web"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Databases & Storage",
+          "description": "Learn how apps store and retrieve data using databases, from relational SQL tables to flexible NoSQL stores.",
+          "sortOrder": 4,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "Which type of database organizes data into tables with rows and columns, similar to a spreadsheet?",
+                "options": [
+                  "Relational database (SQL)",
+                  "Key-value store",
+                  "File system",
+                  "Blockchain"
+                ],
+                "correctIndex": 0,
+                "explanation": "Relational databases like PostgreSQL and MySQL store data in structured tables with rows (records) and columns (fields). Each table represents an entity (like users or products), and you use SQL to query them."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Write a SQL query to get all users from the 'users' table who are older than 18.",
+                "codeTemplate": "___BLANK1___ name, age\nFROM ___BLANK2___\nWHERE age ___BLANK3___ 18;",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK1___",
+                    "answer": "SELECT",
+                    "hints": [
+                      "This SQL keyword retrieves data from a table"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK2___",
+                    "answer": "users",
+                    "hints": [
+                      "The name of the table mentioned in the prompt"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK3___",
+                    "answer": ">",
+                    "hints": [
+                      "Which comparison operator means 'greater than'?"
+                    ]
+                  }
+                ],
+                "language": "sql"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each database type to its best description.",
+                "pairs": [
+                  {
+                    "left": "SQL (Relational)",
+                    "right": "Structured tables with rows and columns"
+                  },
+                  {
+                    "left": "Key-Value Store",
+                    "right": "Simple pairs like a dictionary: key maps to a value"
+                  },
+                  {
+                    "left": "Document DB",
+                    "right": "Stores flexible JSON-like documents"
+                  },
+                  {
+                    "left": "Graph DB",
+                    "right": "Optimized for relationships between connected data"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these steps in order to design a simple database for a blog app.",
+                "items": [
+                  "Identify the main entities (users, posts, comments)",
+                  "Define the columns/fields for each entity",
+                  "Choose data types for each column (text, number, date)",
+                  "Set up relationships between tables (e.g., a post belongs to a user)",
+                  "Write SQL queries to create the tables"
+                ],
+                "explanation": "Database design starts with identifying what you need to store, then defining structure, choosing types, connecting related data, and finally creating the tables with SQL."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "In a relational database, a _____ is a single entry in a table, while a _____ defines a specific piece of information like 'name' or 'email'.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "row",
+                    "acceptAlternatives": [
+                      "record",
+                      "tuple"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "column",
+                    "acceptAlternatives": [
+                      "field",
+                      "attribute"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "guess_output",
+              "content": {
+                "code": "-- Given a 'products' table:\n-- | id | name    | price |\n-- | 1  | Apple   | 1.50  |\n-- | 2  | Banana  | 0.75  |\n-- | 3  | Cherry  | 2.00  |\n\nSELECT name FROM products WHERE price < 1.00;",
+                "language": "sql",
+                "options": [
+                  "Banana",
+                  "Apple, Banana",
+                  "Cherry",
+                  "Apple, Banana, Cherry"
+                ],
+                "correctIndex": 0,
+                "explanation": "Only Banana has a price less than 1.00 (it costs 0.75). The WHERE clause filters rows, and SELECT name means we only see the name column."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "DNS & Domains",
+          "description": "Discover how domain names get translated into IP addresses so your browser can find websites on the internet.",
+          "sortOrder": 5,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is the primary job of the Domain Name System (DNS)?",
+                "options": [
+                  "Translate human-readable domain names into IP addresses",
+                  "Encrypt data sent between your browser and a website",
+                  "Store website files on a server",
+                  "Block malicious websites from loading"
+                ],
+                "correctIndex": 0,
+                "explanation": "DNS acts like the internet's phone book. When you type 'google.com', DNS translates that human-friendly name into a numeric IP address (like 142.250.80.46) so your browser knows which server to contact."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each DNS record type to what it does.",
+                "pairs": [
+                  {
+                    "left": "A Record",
+                    "right": "Points a domain to an IPv4 address"
+                  },
+                  {
+                    "left": "CNAME Record",
+                    "right": "Creates an alias from one domain to another"
+                  },
+                  {
+                    "left": "MX Record",
+                    "right": "Directs email to the correct mail server"
+                  },
+                  {
+                    "left": "TXT Record",
+                    "right": "Stores text information, often for verification"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these steps in order: What happens when you type 'www.example.com' into your browser?",
+                "items": [
+                  "You type the URL into your browser's address bar",
+                  "Your browser checks its local cache for the IP address",
+                  "If not cached, the browser asks a DNS resolver for the IP",
+                  "The DNS resolver looks up the domain and returns the IP address",
+                  "Your browser sends an HTTP request to that IP address",
+                  "The server responds with the web page content"
+                ],
+                "explanation": "When you visit a website, your browser first needs to find the server's IP address through DNS resolution. It checks its cache first, then asks a DNS resolver. Once it has the IP, it can send the actual web request."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "A domain _____ is a company where you purchase and register domain names like 'mysite.com'.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "registrar",
+                    "acceptAlternatives": [
+                      "name registrar"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "DNS",
+                "fullForm": "Domain Name System",
+                "options": [
+                  "Domain Name System",
+                  "Data Network Service",
+                  "Digital Naming Standard",
+                  "Domain Node Server"
+                ],
+                "category": "web"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "CI/CD & Deployment",
+          "description": "Learn how modern teams automatically test, build, and deploy code so updates reach users quickly and safely.",
+          "sortOrder": 6,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is the main benefit of Continuous Integration (CI)?",
+                "options": [
+                  "Automatically testing code changes every time a developer pushes to the repository",
+                  "Hosting your website on a content delivery network",
+                  "Writing code faster with AI assistance",
+                  "Backing up your database every hour"
+                ],
+                "correctIndex": 0,
+                "explanation": "Continuous Integration automatically runs tests and checks every time code is pushed. This catches bugs early before they reach production, ensuring that new changes don't break existing features."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these CI/CD pipeline steps in the correct order.",
+                "items": [
+                  "Developer pushes code to the Git repository",
+                  "CI server detects the change and starts the pipeline",
+                  "Automated tests run against the new code",
+                  "Code is built into a deployable package",
+                  "The build is deployed to a staging environment for review",
+                  "After approval, the build is deployed to production"
+                ],
+                "explanation": "A typical CI/CD pipeline starts when code is pushed, then automatically tests it, builds it, deploys to staging for verification, and finally pushes to production once approved."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each CI/CD concept to its description.",
+                "pairs": [
+                  {
+                    "left": "Continuous Integration",
+                    "right": "Automatically test and merge code changes frequently"
+                  },
+                  {
+                    "left": "Continuous Deployment",
+                    "right": "Automatically push approved changes to production"
+                  },
+                  {
+                    "left": "Staging Environment",
+                    "right": "A copy of production used for final testing before release"
+                  },
+                  {
+                    "left": "Build Pipeline",
+                    "right": "A series of automated steps that prepare code for deployment"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "In CI/CD, the _____ environment is where you test changes before releasing them to real users in _____.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "staging",
+                    "acceptAlternatives": [
+                      "test",
+                      "pre-production"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "production",
+                    "acceptAlternatives": [
+                      "prod"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐\n│  Git     │───>│  Build   │───>│  Test    │───>│ Staging  │───>│Production│\n│  Push    │    │  Step    │    │  Step    │    │ Deploy   │    │ Deploy   │\n└──────────┘    └──────────┘    └──────────┘    └──────────┘    └──────────┘\n                                     │\n                                     │ Tests fail?\n                                     v\n                                ┌──────────┐\n                                │  Alert   │\n                                │Developer │\n                                └──────────┘",
+                "diagramType": "flowchart",
+                "questions": [
+                  {
+                    "question": "According to the pipeline, what happens if the tests fail?",
+                    "options": [
+                      "The developer is alerted",
+                      "The code is deployed to production anyway",
+                      "The build step is repeated",
+                      "The Git push is reverted"
+                    ],
+                    "answer": "The developer is alerted"
+                  },
+                  {
+                    "question": "What step comes right before deploying to production?",
+                    "options": [
+                      "Staging deploy",
+                      "Build step",
+                      "Git push",
+                      "Test step"
+                    ],
+                    "answer": "Staging deploy"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "CI/CD",
+                "fullForm": "Continuous Integration / Continuous Deployment",
+                "options": [
+                  "Continuous Integration / Continuous Deployment",
+                  "Code Inspection / Code Delivery",
+                  "Central Infrastructure / Cloud Deployment",
+                  "Continuous Improvement / Continuous Development"
+                ],
+                "category": "devops"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "AI Coding Mastery",
+      "description": "Learn how AI coding agents work, master prompt engineering, understand tokens and context windows, and explore MCP, RAG, and AI safety.",
+      "difficulty": "beginner",
+      "icon": "🤖",
+      "color": "#8B5CF6",
+      "sortOrder": 2,
+      "published": true,
+      "lessons": [
+        {
+          "title": "Meet AI Coding Agents",
+          "description": "Discover what AI coding agents are and how they write code for you",
+          "sortOrder": 1,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is the main difference between an AI coding agent (like Claude Code or Cursor) and a regular AI chatbot?",
+                "options": [
+                  "An agent can autonomously read files, write code, and run commands — a chatbot only replies with text",
+                  "An agent is always faster than a chatbot",
+                  "A chatbot can write code but an agent cannot",
+                  "There is no difference — they are the same thing"
+                ],
+                "correctIndex": 0,
+                "explanation": "AI coding agents go beyond chat. They can browse your codebase, create and edit files, run terminal commands, and iterate on errors — all autonomously. A chatbot just generates text responses you have to copy-paste yourself."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "Which of the following best describes the 'agentic coding loop'?",
+                "options": [
+                  "Write code once and never change it",
+                  "Plan what to do, write the code, test it, then iterate based on results",
+                  "Copy code from Stack Overflow and paste it in",
+                  "Ask the AI a question and accept the first answer"
+                ],
+                "correctIndex": 1,
+                "explanation": "The agentic loop is: Plan → Code → Test → Iterate. The agent thinks about what needs to be done, writes the code, runs tests or checks for errors, then fixes issues and repeats until the task is complete."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each AI coding tool to its correct description",
+                "pairs": [
+                  {
+                    "left": "GitHub Copilot",
+                    "right": "Autocomplete-style AI that suggests code as you type in your editor"
+                  },
+                  {
+                    "left": "Claude Code",
+                    "right": "CLI-based agent that reads your codebase, edits files, and runs commands"
+                  },
+                  {
+                    "left": "Cursor",
+                    "right": "AI-powered code editor built on VS Code with integrated chat and agent mode"
+                  },
+                  {
+                    "left": "ChatGPT",
+                    "right": "General-purpose chatbot that can discuss code but cannot directly edit your files"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put the steps of an AI coding agent's workflow in the correct order",
+                "items": [
+                  "Read and understand the existing codebase",
+                  "Plan what changes are needed",
+                  "Write or edit the code",
+                  "Run tests or check for errors",
+                  "Fix any issues found and repeat if needed"
+                ],
+                "explanation": "An agent first reads your code to understand it, then plans its approach, writes the changes, tests them, and iterates until everything works. This plan-code-test-iterate loop is what makes agents powerful."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "An AI coding agent follows an _____ loop: Plan, Code, Test, and Iterate until the task is complete.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "agentic",
+                    "acceptAlternatives": [
+                      "Agentic",
+                      "agent",
+                      "Agent"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "┌─────────────────────────────────────────┐\n│         AI Coding Agent Loop            │\n└─────────────────────────────────────────┘\n                    │\n                    ▼\n             ┌────────────┐\n             │   1. PLAN   │\n             │ Understand  │\n             │ the task    │\n             └─────┬──────┘\n                   │\n                   ▼\n             ┌────────────┐\n             │  2. CODE    │\n             │ Write/edit  │\n             │ files       │\n             └─────┬──────┘\n                   │\n                   ▼\n             ┌────────────┐\n             │  3. TEST    │\n             │ Run & check │\n             │ for errors  │\n             └─────┬──────┘\n                   │\n              ┌────┴────┐\n              ▼         ▼\n         ┌────────┐ ┌────────┐\n         │  Pass  │ │  Fail  │\n         │  Done! │ │ Fix it │\n         └────────┘ └───┬────┘\n                        │\n                        └──→ Back to PLAN",
+                "diagramType": "flowchart",
+                "questions": [
+                  {
+                    "question": "According to the diagram, what happens when the agent's test step fails?",
+                    "options": [
+                      "The agent gives up and stops",
+                      "The agent goes back to the planning step to fix the issue",
+                      "The agent asks the user to fix it manually",
+                      "The agent deletes all the code"
+                    ],
+                    "answer": "The agent goes back to the planning step to fix the issue"
+                  },
+                  {
+                    "question": "How many main steps are in the agentic coding loop before a pass/fail decision?",
+                    "options": [
+                      "2",
+                      "3",
+                      "4",
+                      "5"
+                    ],
+                    "answer": "3"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 6,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "IDE",
+                "fullForm": "Integrated Development Environment",
+                "options": [
+                  "Integrated Development Environment",
+                  "Intelligent Data Engine",
+                  "Internal Debugging Extension",
+                  "Interactive Design Editor"
+                ],
+                "category": "ai"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 7,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Complete this prompt to ask an AI coding agent to create a function. Good prompts are specific about what you want.",
+                "codeTemplate": "// Asking an AI agent to help:\n// \"Create a JavaScript function called ___BLANK1___ \n//  that takes a number and returns true if it is ___BLANK2___\"",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK1___",
+                    "answer": "isEven",
+                    "hints": [
+                      "A common function name that checks if a number is divisible by 2"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK2___",
+                    "answer": "even",
+                    "hints": [
+                      "The opposite of odd"
+                    ]
+                  }
+                ],
+                "language": "javascript"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 8,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Tokens & Context Windows",
+          "description": "Learn how AI models break text into tokens and why context windows matter",
+          "sortOrder": 2,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is a 'token' in the context of AI language models?",
+                "options": [
+                  "A piece of a word or a small chunk of text that the AI processes — like a puzzle piece",
+                  "A cryptocurrency used to pay for AI services",
+                  "A special password to access the AI",
+                  "A complete sentence that the AI reads at once"
+                ],
+                "correctIndex": 0,
+                "explanation": "Tokens are the building blocks of how AI reads text. A token can be a whole short word (like 'the') or part of a longer word ('un' + 'believ' + 'able'). Think of tokens like puzzle pieces — the AI breaks your text into these small chunks before processing it."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "Why is the 'context window' important when working with AI coding agents?",
+                "options": [
+                  "It determines the screen resolution of the AI interface",
+                  "It is the maximum amount of text (input + output) the AI can consider at once — like its working memory",
+                  "It controls how fast the AI generates code",
+                  "It is the number of files on your computer"
+                ],
+                "correctIndex": 1,
+                "explanation": "The context window is like the AI's working memory — it can only 'see' a limited amount of text at a time. If your codebase is bigger than the context window, the agent needs strategies to focus on the most relevant parts. Larger context windows let the AI consider more code at once."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each AI model to its approximate context window size",
+                "pairs": [
+                  {
+                    "left": "GPT-3.5",
+                    "right": "~4K tokens (small — about 3,000 words)"
+                  },
+                  {
+                    "left": "GPT-4o",
+                    "right": "128K tokens (large — about a short novel)"
+                  },
+                  {
+                    "left": "Claude 3.5 Sonnet",
+                    "right": "200K tokens (very large — multiple codebases)"
+                  },
+                  {
+                    "left": "Gemini 1.5 Pro",
+                    "right": "1M+ tokens (massive — entire repositories)"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "The _____ window is the maximum amount of text an AI model can process at once, measured in tokens.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "context",
+                    "acceptAlternatives": [
+                      "Context"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "guess_output",
+              "content": {
+                "code": "# Python: How many tokens roughly?\ntext = \"Hello world\"\n# Rule of thumb: 1 token ≈ 4 characters in English\nestimated_tokens = len(text) / 4\nprint(int(estimated_tokens))",
+                "language": "python",
+                "options": [
+                  "2",
+                  "11",
+                  "44"
+                ],
+                "correctIndex": 0,
+                "explanation": "The string 'Hello world' has 11 characters. Dividing by 4 gives 2.75, and int() truncates to 2. In reality, 'Hello world' is exactly 2 tokens for most models — the rough rule of '1 token ≈ 4 characters' works surprisingly well for English text!"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these context window sizes in order from SMALLEST to LARGEST",
+                "items": [
+                  "4K tokens — early GPT-3.5",
+                  "8K tokens — GPT-4 (original)",
+                  "128K tokens — GPT-4o",
+                  "200K tokens — Claude 3.5 Sonnet",
+                  "1M+ tokens — Gemini 1.5 Pro"
+                ],
+                "explanation": "Context windows have grown dramatically. Early models could only handle a few pages of text (4K tokens), while modern models like Gemini 1.5 Pro can process over a million tokens — enough to read entire codebases at once."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 6,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Complete this JavaScript function that estimates the token count for a given text string using the 4-characters-per-token rule of thumb.",
+                "codeTemplate": "function estimateTokens(text) {\n  // Rule of thumb: ~4 chars per token\n  return Math.___BLANK1___(text.___BLANK2___ / 4);\n}",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK1___",
+                    "answer": "ceil",
+                    "hints": [
+                      "A Math method that rounds UP to the nearest integer"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK2___",
+                    "answer": "length",
+                    "hints": [
+                      "The property that gives you the number of characters in a string"
+                    ]
+                  }
+                ],
+                "language": "javascript"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 7,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "LLM",
+                "fullForm": "Large Language Model",
+                "options": [
+                  "Large Language Model",
+                  "Low Latency Memory",
+                  "Linear Logic Machine",
+                  "Local Learning Module"
+                ],
+                "category": "ai"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 8,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Prompt Engineering",
+          "description": "Master the art of writing effective prompts to get the best results from AI coding tools",
+          "sortOrder": 3,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is the difference between 'zero-shot' and 'few-shot' prompting?",
+                "options": [
+                  "Zero-shot gives no examples, few-shot includes examples of what you want",
+                  "Zero-shot is faster, few-shot is slower",
+                  "Zero-shot uses images, few-shot uses text only",
+                  "There is no difference"
+                ],
+                "correctIndex": 0,
+                "explanation": "Zero-shot prompting means asking the AI to do something with no examples — you just describe the task. Few-shot prompting means including 1-3 examples of input→output in your prompt so the AI can see the pattern you want. Few-shot often produces better, more consistent results."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is 'chain-of-thought' prompting?",
+                "options": [
+                  "Asking the AI to respond with a blockchain hash",
+                  "Telling the AI to think step-by-step before giving its final answer",
+                  "Sending multiple prompts in a chain, one after another",
+                  "Using AI to generate a linked list data structure"
+                ],
+                "correctIndex": 1,
+                "explanation": "Chain-of-thought (CoT) prompting asks the AI to 'think step by step' or 'show your reasoning.' This helps the AI break down complex problems and produces more accurate results — especially for coding tasks that require logic and planning."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each prompting technique to its description",
+                "pairs": [
+                  {
+                    "left": "System prompt",
+                    "right": "Instructions that set the AI's role and behavior for the entire conversation"
+                  },
+                  {
+                    "left": "Few-shot prompting",
+                    "right": "Including examples of desired input/output pairs in your prompt"
+                  },
+                  {
+                    "left": "Role prompting",
+                    "right": "Telling the AI to act as a specific expert, like 'You are a senior React developer'"
+                  },
+                  {
+                    "left": "Chain-of-thought",
+                    "right": "Asking the AI to reason step-by-step before answering"
+                  },
+                  {
+                    "left": "Structured output",
+                    "right": "Requesting the AI to respond in a specific format like JSON or markdown"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Complete this prompt template that uses few-shot prompting to get the AI to generate JSDoc comments. Fill in the blanks to complete the second example.",
+                "codeTemplate": "// Prompt template with few-shot examples:\n//\n// Example 1:\n// Input: function add(a, b) { return a + b; }\n// Output: /** @param {number} a @param {number} b @returns {number} */\n//\n// Example 2:\n// Input: function ___BLANK1___(name) { return `Hello, ${name}!`; }\n// Output: /** @param {___BLANK2___} name @returns {string} */",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK1___",
+                    "answer": "greet",
+                    "hints": [
+                      "A function name that means to say hello to someone"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK2___",
+                    "answer": "string",
+                    "hints": [
+                      "The JavaScript type for text data like a person's name"
+                    ]
+                  }
+                ],
+                "language": "javascript"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these prompt engineering steps in the best order for getting great results from an AI coding agent",
+                "items": [
+                  "Define the AI's role (e.g., 'You are a senior JavaScript developer')",
+                  "Describe the specific task clearly with context",
+                  "Provide examples of desired input and output (few-shot)",
+                  "Specify the output format you want (e.g., 'Return valid JSON')",
+                  "Review the result and refine your prompt if needed"
+                ],
+                "explanation": "Effective prompting follows a pattern: first set the role, then describe the task with context, show examples, specify the format, and finally iterate. This structured approach consistently produces better AI outputs than vague one-line prompts."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "A _____ prompt sets the AI's role and behavior for the entire conversation, while a user prompt contains the specific request.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "system",
+                    "acceptAlternatives": [
+                      "System"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 6,
+              "status": "published"
+            },
+            {
+              "type": "spot_the_bug",
+              "content": {
+                "code": "// BAD PROMPT to an AI coding agent:\n\n\"Make it better.\n\nFix the thing.\n\nYou know what I mean.\"",
+                "language": "javascript",
+                "bugLine": 3,
+                "bugDescription": "This prompt is vague and gives the AI no context. It does not specify WHAT to improve, WHERE the problem is, or WHAT 'better' means. The AI cannot read your mind — you need to be specific about the file, the issue, and the desired outcome.",
+                "fixedCode": "// GOOD PROMPT to an AI coding agent:\n\n\"In src/utils/auth.js, the login function\non line 42 returns undefined when the API\ncall fails. Add error handling with a\ntry-catch block that returns a meaningful\nerror object with status and message fields.\"",
+                "hints": [
+                  "Think about what information the AI needs to do its job",
+                  "Does this prompt tell the AI WHERE to look, WHAT is wrong, or HOW to fix it?"
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 7,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "┌────────────────────────────────────────┐\n│          Prompt Structure              │\n└────────────────────────────────────────┘\n\n┌──────────────────┐\n│  SYSTEM PROMPT   │  ← Sets role & rules\n│  \"You are a ...\" │     (stays constant)\n└───────┬──────────┘\n        │\n        ▼\n┌──────────────────┐\n│   USER PROMPT    │  ← Your request\n│  \"Build a ...\"   │     (changes each time)\n└───────┬──────────┘\n        │\n        ▼\n┌──────────────────┐\n│  FEW-SHOT        │  ← Optional examples\n│  EXAMPLES        │     (improve quality)\n│  Input → Output  │\n└───────┬──────────┘\n        │\n        ▼\n┌──────────────────┐\n│  AI RESPONSE     │  ← Generated output\n│  (code, text,    │\n│   JSON, etc.)    │\n└──────────────────┘",
+                "diagramType": "flowchart",
+                "questions": [
+                  {
+                    "question": "According to the diagram, which part of the prompt stays constant across requests?",
+                    "options": [
+                      "The user prompt",
+                      "The system prompt",
+                      "The few-shot examples",
+                      "The AI response"
+                    ],
+                    "answer": "The system prompt"
+                  },
+                  {
+                    "question": "Which part of the prompt structure is labeled as optional?",
+                    "options": [
+                      "System prompt",
+                      "User prompt",
+                      "Few-shot examples",
+                      "AI response"
+                    ],
+                    "answer": "Few-shot examples"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 8,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Tool Use & Structured Output",
+          "description": "Learn how AI agents use tools and produce structured data to get real work done",
+          "sortOrder": 4,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What does 'tool use' (also called 'function calling') mean in the context of AI coding agents?",
+                "options": [
+                  "The AI can call predefined functions to interact with the outside world — like reading files, running commands, or searching the web",
+                  "The AI physically uses hardware tools like a keyboard",
+                  "The user must install special software plugins for the AI",
+                  "The AI can only use tools that come with Python"
+                ],
+                "correctIndex": 0,
+                "explanation": "Tool use means the AI can invoke specific functions during a conversation. For example, an AI coding agent might call a 'read_file' tool to see your code, a 'write_file' tool to make changes, or a 'run_command' tool to execute tests. This is what makes agents so powerful — they can take real actions, not just talk."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "Why do AI coding agents use 'structured output' (like JSON) instead of plain text responses?",
+                "options": [
+                  "JSON looks prettier than plain text",
+                  "Structured output can be reliably parsed by code, making it possible to automatically process the AI's response",
+                  "Plain text is not supported by modern AI models",
+                  "Structured output is smaller and saves bandwidth"
+                ],
+                "correctIndex": 1,
+                "explanation": "When an AI returns structured data like JSON, your application can parse it reliably and take automated actions. For example, if you ask an AI to analyze code quality, getting back {\"score\": 8, \"issues\": [...]} is much more useful for automation than a paragraph of text. This is essential for tool orchestration."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each AI agent tool to what it does",
+                "pairs": [
+                  {
+                    "left": "read_file",
+                    "right": "Opens and reads the contents of a file in your project"
+                  },
+                  {
+                    "left": "write_file",
+                    "right": "Creates or overwrites a file with new content"
+                  },
+                  {
+                    "left": "run_command",
+                    "right": "Executes a terminal/shell command like npm test"
+                  },
+                  {
+                    "left": "search_code",
+                    "right": "Finds specific patterns or text across your codebase"
+                  },
+                  {
+                    "left": "edit_file",
+                    "right": "Makes targeted changes to specific lines in an existing file"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Complete this JSON tool definition that tells an AI model about a 'search_files' function it can call. Tool definitions describe the function name, what it does, and what parameters it accepts.",
+                "codeTemplate": "{\n  \"name\": \"search_files\",\n  \"___BLANK1___\": \"Search for files matching a pattern in the project\",\n  \"parameters\": {\n    \"type\": \"___BLANK2___\",\n    \"properties\": {\n      \"pattern\": {\n        \"type\": \"string\",\n        \"description\": \"Glob pattern like *.js or src/**/*.ts\"\n      }\n    },\n    \"required\": [\"pattern\"]\n  }\n}",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK1___",
+                    "answer": "description",
+                    "hints": [
+                      "The field that explains what this tool does in plain English"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK2___",
+                    "answer": "object",
+                    "hints": [
+                      "The JSON Schema type for a collection of named properties"
+                    ]
+                  }
+                ],
+                "language": "javascript"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put the steps of an AI agent's tool-use cycle in the correct order",
+                "items": [
+                  "The AI receives a user request (e.g., 'fix the bug in auth.js')",
+                  "The AI decides which tool to call (e.g., read_file) and generates tool call JSON",
+                  "The system executes the tool and returns the result to the AI",
+                  "The AI processes the tool result and decides the next action",
+                  "The AI repeats tool calls as needed until the task is complete, then responds to the user"
+                ],
+                "explanation": "Tool use follows a loop: the AI decides to call a tool, the system runs it, the result goes back to the AI, and it decides what to do next. This cycle repeats — an agent might read a file, then edit it, then run tests, then fix errors — until the job is done."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "guess_output",
+              "content": {
+                "code": "// An AI returns structured JSON output:\nconst response = JSON.parse(\n  '{\"status\": \"error\", \"line\": 42, \"message\": \"undefined variable\"}'\n);\n\nconsole.log(`Bug on line ${response.line}: ${response.message}`);",
+                "language": "javascript",
+                "options": [
+                  "Bug on line 42: undefined variable",
+                  "Bug on line undefined: null",
+                  "{\"status\": \"error\", \"line\": 42}",
+                  "Error: cannot parse JSON"
+                ],
+                "correctIndex": 0,
+                "explanation": "JSON.parse converts the JSON string into a JavaScript object. We can then access response.line (42) and response.message ('undefined variable') using dot notation. Template literals (`${}`) embed these values into the output string. This is why structured output is useful — it is easy to extract specific data from it."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 6,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "┌──────────┐    ┌──────────────────┐    ┌──────────┐\n│          │    │                  │    │          │\n│   USER   │───→│    AI  MODEL     │───→│  TOOL    │\n│          │    │                  │    │  (e.g.   │\n│ \"Fix the │    │ Decides to call  │    │ read_    │\n│  bug\"    │    │ a tool           │    │ file)    │\n│          │    │                  │    │          │\n└──────────┘    └────────┬─────────┘    └────┬─────┘\n                         │                   │\n                         │    ┌──────────┐   │\n                         │    │          │   │\n                         │◄───│  RESULT  │◄──┘\n                         │    │ (file    │\n                         │    │ contents)│\n                         │    └──────────┘\n                         │\n                         ▼\n                ┌────────────────┐\n                │  AI decides    │\n                │  next action   │\n                │  or responds   │\n                │  to user       │\n                └────────────────┘",
+                "diagramType": "sequence",
+                "questions": [
+                  {
+                    "question": "In the tool-use flow shown, who executes the actual tool — the AI model or the system?",
+                    "options": [
+                      "The AI model executes the tool directly",
+                      "The tool is a separate component — the system executes it and returns the result to the AI",
+                      "The user executes the tool manually",
+                      "Tools execute themselves automatically"
+                    ],
+                    "answer": "The tool is a separate component — the system executes it and returns the result to the AI"
+                  },
+                  {
+                    "question": "After receiving the tool result, what does the AI model do?",
+                    "options": [
+                      "Always stops and waits for the user",
+                      "Decides the next action — either call another tool or respond to the user",
+                      "Deletes the result immediately",
+                      "Sends the raw result directly to the user without processing"
+                    ],
+                    "answer": "Decides the next action — either call another tool or respond to the user"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 7,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "When an AI model needs to interact with external systems, it uses _____ calling (also known as tool use) to invoke predefined functions and receive their results.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "function",
+                    "acceptAlternatives": [
+                      "Function",
+                      "tool",
+                      "Tool"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 8,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "CLAUDE.md — Project Memory",
+          "description": "Learn how CLAUDE.md files give AI coding agents persistent project context, conventions, and instructions so they understand your codebase instantly.",
+          "sortOrder": 5,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is the primary purpose of a CLAUDE.md file in a project?",
+                "options": [
+                  "To give AI coding agents persistent context about the project's stack, rules, and conventions",
+                  "To replace the README.md file with a shorter version",
+                  "To store API keys and secrets for the project",
+                  "To auto-generate documentation from source code"
+                ],
+                "correctIndex": 0,
+                "explanation": "CLAUDE.md is a special file that AI coding agents (like Claude Code) read automatically when they enter your project. It contains project-specific instructions, stack details, coding conventions, and rules that help the agent understand your codebase without re-explaining everything each session."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "Where can CLAUDE.md files be placed for different scopes of instructions?",
+                "options": [
+                  "Only in the project root directory",
+                  "Only in the user's home directory (~/.claude/)",
+                  "In the project root for project rules, and in ~/.claude/ for global personal rules — creating a hierarchy",
+                  "Inside the node_modules folder so dependencies can read them"
+                ],
+                "correctIndex": 2,
+                "explanation": "CLAUDE.md supports a hierarchical config system. A file in your home directory (~/.claude/CLAUDE.md) applies to ALL your projects as personal global instructions. A CLAUDE.md in the project root applies only to that project. The agent merges both, letting you have personal preferences globally and project-specific rules locally."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each CLAUDE.md section with what it typically contains:",
+                "pairs": [
+                  {
+                    "left": "Stack section",
+                    "right": "Languages, frameworks, and databases the project uses"
+                  },
+                  {
+                    "left": "Commands section",
+                    "right": "How to run dev servers, tests, and build scripts"
+                  },
+                  {
+                    "left": "Key Rules section",
+                    "right": "Coding conventions and constraints the agent must follow"
+                  },
+                  {
+                    "left": "Project Layout section",
+                    "right": "Folder structure and where to find different code domains"
+                  },
+                  {
+                    "left": "Auth Pattern section",
+                    "right": "How authentication and sessions work in the app"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Complete this CLAUDE.md template with the correct section content for a React + Express project:",
+                "codeTemplate": "# MyApp\n\n## Stack\n- **Frontend:** ___BLANK_1___\n- **Backend:** Express on Node.js\n- **Database:** PostgreSQL + ___BLANK_2___\n\n## Commands\n```bash\ncd client && ___BLANK_3___   # start frontend dev server\ncd api && npm run dev         # start backend\n```\n\n## Key Rules\n- **Max file size:** ___BLANK_4___ lines\n- Use TypeScript for all new files",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK_1___",
+                    "answer": "React",
+                    "hints": [
+                      "The most popular UI library, starts with R"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK_2___",
+                    "answer": "Prisma",
+                    "hints": [
+                      "A popular Node.js ORM that starts with P"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK_3___",
+                    "answer": "npm run dev",
+                    "hints": [
+                      "Standard npm command to start a development server"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK_4___",
+                    "answer": "400",
+                    "hints": [
+                      "A common line limit to keep files manageable — think a few hundred"
+                    ]
+                  }
+                ],
+                "language": "markdown"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these steps in order: How does an AI coding agent use CLAUDE.md when you start a session?",
+                "items": [
+                  "Agent starts and scans for CLAUDE.md files in the project and home directory",
+                  "Agent reads and merges the global (~/.claude/) and project-level CLAUDE.md instructions",
+                  "Agent loads the combined context into its working memory",
+                  "User gives a task or asks a question about the codebase",
+                  "Agent applies the CLAUDE.md rules and conventions while generating code or answers"
+                ],
+                "explanation": "The agent first discovers CLAUDE.md files, reads and merges them (global + project), loads that context, and then uses those rules throughout the session whenever you ask it to do work."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "A CLAUDE.md in your home directory provides _____ instructions that apply to all projects, while a CLAUDE.md in the project root provides _____ instructions for that specific codebase.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "global",
+                    "acceptAlternatives": [
+                      "personal",
+                      "universal"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "project-specific",
+                    "acceptAlternatives": [
+                      "local",
+                      "project",
+                      "specific"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 6,
+              "status": "published"
+            },
+            {
+              "type": "spot_the_bug",
+              "content": {
+                "code": "# My Project\n\n## Stack\n- React, Node, Postgres\n\n## Secrets\n- API_KEY=sk-abc123456789\n- DB_PASSWORD=supersecret42\n\n## Commands\n- npm run dev\n\n## Rules\n- Do whatever you want, no constraints",
+                "language": "markdown",
+                "bugLine": 5,
+                "bugDescription": "NEVER put secrets, API keys, or passwords in CLAUDE.md! This file is checked into version control (git) and visible to anyone with repo access. Secrets belong in .env files that are git-ignored. Also, the Rules section is too vague — good rules are specific and actionable.",
+                "fixedCode": "# My Project\n\n## Stack\n- **Frontend:** React 19 + Vite\n- **Backend:** Express on Node.js\n- **Database:** PostgreSQL + Prisma ORM\n\n## Commands\n```bash\nnpm run dev    # start dev server on :3000\nnpm run build  # production build\n```\n\n## Key Rules\n- Use TypeScript for all new files\n- Max 400 lines per file\n- Store secrets in .env (never commit them)",
+                "hints": [
+                  "Look at lines 5-6 — should sensitive credentials ever be in a file that gets committed to git?"
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 7,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "CLI",
+                "fullForm": "Command Line Interface",
+                "options": [
+                  "Command Line Interface",
+                  "Code Language Interpreter",
+                  "Client Logic Integration",
+                  "Compiled Library Index"
+                ],
+                "category": "development"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 8,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "MCP — Model Context Protocol",
+          "description": "Discover how MCP lets AI agents talk to databases, APIs, and file systems through a standardized tool protocol — like USB ports for AI.",
+          "sortOrder": 6,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is MCP (Model Context Protocol)?",
+                "options": [
+                  "A standardized protocol that lets AI agents connect to external tools, databases, and APIs through a client-server architecture",
+                  "A programming language designed specifically for building AI models",
+                  "A database format for storing machine learning training data",
+                  "A security protocol that encrypts AI model weights during transfer"
+                ],
+                "correctIndex": 0,
+                "explanation": "MCP is an open protocol created by Anthropic that standardizes how AI applications (clients) connect to external data sources and tools (servers). Think of it like USB — before USB, every device had a different connector. MCP provides one standard way for AI agents to use tools like databases, file systems, APIs, and more."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "In MCP, what is the difference between 'tools' and 'resources'?",
+                "options": [
+                  "Tools are free to use while resources cost money",
+                  "Tools perform actions (like running a query), while resources provide data the AI can read (like a file or database schema)",
+                  "Tools are for Python and resources are for JavaScript",
+                  "There is no difference — they are the same thing"
+                ],
+                "correctIndex": 1,
+                "explanation": "In MCP, 'tools' are callable functions that DO something — like executing a database query, sending an email, or creating a file. 'Resources' are pieces of data the AI can READ — like file contents, database schemas, or configuration. Tools are active (verbs), resources are passive (nouns)."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each MCP concept with its role in the architecture:",
+                "pairs": [
+                  {
+                    "left": "MCP Client",
+                    "right": "The AI application (like Claude Code) that connects to servers"
+                  },
+                  {
+                    "left": "MCP Server",
+                    "right": "A lightweight program that exposes tools and resources to the client"
+                  },
+                  {
+                    "left": "MCP Tool",
+                    "right": "A callable function that performs an action (query, write, search)"
+                  },
+                  {
+                    "left": "MCP Resource",
+                    "right": "Read-only data the AI can access (files, schemas, configs)"
+                  },
+                  {
+                    "left": "Transport",
+                    "right": "How client and server communicate (stdio, HTTP)"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Order the steps of how an AI agent uses an MCP tool to query a database:",
+                "items": [
+                  "User asks the AI agent: 'What users signed up today?'",
+                  "Agent discovers available MCP tools from the connected database server",
+                  "Agent selects the appropriate query tool and constructs the parameters",
+                  "MCP client sends the tool call request to the MCP database server",
+                  "MCP server executes the SQL query against the actual database",
+                  "Server returns the results back to the MCP client",
+                  "Agent formats the data and presents the answer to the user"
+                ],
+                "explanation": "MCP follows a clear flow: the user asks a question, the agent discovers and selects the right tool, the client sends the request to the server, the server executes it, returns results, and the agent presents them. The AI never touches the database directly — the MCP server handles all actual execution."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "MCP uses a _____-server architecture where the AI application acts as the _____, and external tools like databases and APIs are exposed through _____.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "client",
+                    "acceptAlternatives": [
+                      "client-server"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "client",
+                    "acceptAlternatives": [
+                      "MCP client"
+                    ]
+                  },
+                  {
+                    "position": 2,
+                    "answer": "servers",
+                    "acceptAlternatives": [
+                      "MCP servers",
+                      "server"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "┌──────────────────┐       ┌─────────────────┐\n│   AI Application │       │  MCP Server:    │\n│  (MCP Client)    │──────→│  Database        │\n│                  │←──────│  (PostgreSQL)    │\n│  e.g. Claude Code│       └─────────────────┘\n│                  │\n│                  │       ┌─────────────────┐\n│                  │──────→│  MCP Server:    │\n│                  │←──────│  File System     │\n│                  │       └─────────────────┘\n│                  │\n│                  │       ┌─────────────────┐\n│                  │──────→│  MCP Server:    │\n│                  │←──────│  GitHub API      │\n└──────────────────┘       └─────────────────┘",
+                "diagramType": "architecture",
+                "questions": [
+                  {
+                    "question": "How many MCP servers is the AI application connected to in this diagram?",
+                    "options": [
+                      "1",
+                      "2",
+                      "3",
+                      "4"
+                    ],
+                    "answer": "3"
+                  },
+                  {
+                    "question": "Which component initiates the requests in this architecture?",
+                    "options": [
+                      "The MCP Servers",
+                      "The AI Application (MCP Client)",
+                      "The databases directly",
+                      "The user's browser"
+                    ],
+                    "answer": "The AI Application (MCP Client)"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 6,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Complete this MCP server configuration in a Claude Code settings file that connects to a PostgreSQL database server:",
+                "codeTemplate": "{\n  \"mcpServers\": {\n    \"___BLANK_1___\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"___BLANK_2___\"\n      ],\n      \"env\": {\n        \"DATABASE_URL\": \"___BLANK_3___\"\n      }\n    }\n  }\n}",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK_1___",
+                    "answer": "postgres",
+                    "hints": [
+                      "A name for this server — what database is it connecting to?"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK_2___",
+                    "answer": "@modelcontextprotocol/server-postgres",
+                    "hints": [
+                      "The npm package for the official MCP PostgreSQL server"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK_3___",
+                    "answer": "postgresql://localhost:5432/mydb",
+                    "hints": [
+                      "A standard PostgreSQL connection string starting with postgresql://"
+                    ]
+                  }
+                ],
+                "language": "json"
+              },
+              "difficulty": 3,
+              "xpReward": 20,
+              "sortOrder": 7,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "MCP",
+                "fullForm": "Model Context Protocol",
+                "options": [
+                  "Model Context Protocol",
+                  "Machine Code Processor",
+                  "Multi-Channel Pipeline",
+                  "Memory Cache Provider"
+                ],
+                "category": "ai"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 8,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "RAG & Embeddings",
+          "description": "Learn how Retrieval-Augmented Generation lets AI answer questions using your own documents by turning text into searchable vectors.",
+          "sortOrder": 7,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What does RAG (Retrieval-Augmented Generation) do?",
+                "options": [
+                  "It retrieves relevant information from external documents and feeds it to the AI so it can generate accurate, grounded answers",
+                  "It randomly generates text without any source material",
+                  "It compresses AI models to run faster on mobile devices",
+                  "It trains new AI models from scratch using raw data"
+                ],
+                "correctIndex": 0,
+                "explanation": "RAG combines two steps: first RETRIEVE relevant chunks of text from your documents (using vector search), then feed those chunks to the AI to GENERATE an answer. This way, the AI can answer questions about YOUR specific data — like company docs, codebases, or knowledge bases — instead of relying only on its training data."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is an embedding in the context of AI?",
+                "options": [
+                  "A way to embed images inside HTML pages",
+                  "A numerical vector (list of numbers) that represents the meaning of text, allowing similar texts to be 'close' in vector space",
+                  "A method to compress files into smaller sizes",
+                  "A technique to hide watermarks inside AI-generated content"
+                ],
+                "correctIndex": 1,
+                "explanation": "An embedding converts text (a word, sentence, or paragraph) into a list of numbers (a vector) — for example [0.23, -0.87, 0.45, ...]. The magic is that similar meanings produce similar vectors. So 'dog' and 'puppy' would have very close vectors, while 'dog' and 'airplane' would be far apart. This lets computers understand meaning mathematically."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each RAG concept with its description:",
+                "pairs": [
+                  {
+                    "left": "Chunking",
+                    "right": "Splitting documents into smaller pieces before embedding them"
+                  },
+                  {
+                    "left": "Vector database",
+                    "right": "A database optimized for storing and searching embeddings (e.g. Qdrant, Pinecone)"
+                  },
+                  {
+                    "left": "Semantic search",
+                    "right": "Finding results by meaning similarity rather than exact keyword matching"
+                  },
+                  {
+                    "left": "Embedding model",
+                    "right": "An AI model that converts text into numerical vectors"
+                  },
+                  {
+                    "left": "Retrieval",
+                    "right": "The step where relevant document chunks are fetched based on the user's query"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Order the steps of a RAG pipeline from start to finish:",
+                "items": [
+                  "User asks a question (e.g. 'What is our refund policy?')",
+                  "The question is converted into an embedding vector",
+                  "The vector database is searched for the most similar document chunks",
+                  "Top matching chunks are retrieved from the database",
+                  "The original question + retrieved chunks are sent to the AI model as context",
+                  "The AI generates an answer grounded in the retrieved documents"
+                ],
+                "explanation": "RAG follows a clear pipeline: the user's question is embedded into a vector, that vector is used to search for similar document chunks in the vector database, the best matches are retrieved, and finally the AI uses those chunks as context to generate a grounded answer."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "In RAG, documents are split into smaller pieces called _____, which are then converted into numerical _____ using an embedding model and stored in a _____ database for fast similarity search.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "chunks",
+                    "acceptAlternatives": [
+                      "segments",
+                      "pieces"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "vectors",
+                    "acceptAlternatives": [
+                      "embeddings",
+                      "vector representations"
+                    ]
+                  },
+                  {
+                    "position": 2,
+                    "answer": "vector",
+                    "acceptAlternatives": [
+                      "vector"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "┌──────────┐    ┌──────────────┐    ┌──────────────┐\n│  User    │    │  Embedding   │    │   Vector     │\n│  Query   │───→│  Model       │───→│   Database   │\n│          │    │ (text→vector)│    │  (Qdrant)    │\n└──────────┘    └──────────────┘    └──────┬───────┘\n                                          │\n                                   Top K matches\n                                          │\n                                          ▼\n┌──────────┐    ┌──────────────┐    ┌──────────────┐\n│  Final   │←───│  LLM         │←───│  Retrieved   │\n│  Answer  │    │ (Generate)   │    │  Chunks      │\n└──────────┘    └──────────────┘    └──────────────┘",
+                "diagramType": "flowchart",
+                "questions": [
+                  {
+                    "question": "What converts the user's query into a format the vector database can search?",
+                    "options": [
+                      "The LLM",
+                      "The Embedding Model",
+                      "The Vector Database itself",
+                      "The user manually"
+                    ],
+                    "answer": "The Embedding Model"
+                  },
+                  {
+                    "question": "What does the LLM receive as input to generate the final answer?",
+                    "options": [
+                      "Only the user query",
+                      "Only the retrieved chunks",
+                      "The user query plus the retrieved chunks",
+                      "The entire vector database"
+                    ],
+                    "answer": "The user query plus the retrieved chunks"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 6,
+              "status": "published"
+            },
+            {
+              "type": "code_completion",
+              "content": {
+                "prompt": "Complete this simplified RAG pipeline in JavaScript that embeds a query, searches a vector database, and generates an answer:",
+                "codeTemplate": "// 1. Embed the user's question\nconst queryVector = await ___BLANK_1___(userQuestion);\n\n// 2. Search vector database for similar chunks\nconst results = await vectorDB.___BLANK_2___({\n  vector: queryVector,\n  limit: 5\n});\n\n// 3. Build context from retrieved chunks\nconst context = results.map(r => r.text).join('\\n');\n\n// 4. Generate answer using LLM with retrieved context\nconst answer = await llm.___BLANK_3___({\n  prompt: `Context: ${context}\\n\\nQuestion: ${userQuestion}`,\n});\n\nconsole.log(answer);",
+                "blanks": [
+                  {
+                    "placeholder": "___BLANK_1___",
+                    "answer": "embed",
+                    "hints": [
+                      "What function converts text into a vector? Think: text to embedding"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK_2___",
+                    "answer": "search",
+                    "hints": [
+                      "What operation finds similar vectors in a database?"
+                    ]
+                  },
+                  {
+                    "placeholder": "___BLANK_3___",
+                    "answer": "generate",
+                    "hints": [
+                      "What does an LLM do with a prompt? It ... text"
+                    ]
+                  }
+                ],
+                "language": "javascript"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 7,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "RAG",
+                "fullForm": "Retrieval-Augmented Generation",
+                "options": [
+                  "Retrieval-Augmented Generation",
+                  "Random Access Graphics",
+                  "Recursive Algorithm Generator",
+                  "Realtime API Gateway"
+                ],
+                "category": "ai"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 8,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "AI Safety & Guardrails",
+          "description": "Understand the risks of AI — hallucinations, prompt injection, bias — and the guardrails that keep AI systems safe and trustworthy.",
+          "sortOrder": 8,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is an AI 'hallucination'?",
+                "options": [
+                  "When the AI generates confident-sounding but factually incorrect or made-up information",
+                  "When the AI displays visual glitches on screen",
+                  "When the AI takes too long to respond to a query",
+                  "When the AI correctly refuses to answer a harmful question"
+                ],
+                "correctIndex": 0,
+                "explanation": "AI hallucinations happen when a model generates text that sounds plausible and confident but is actually wrong, made-up, or has no basis in reality. For example, an AI might cite a research paper that doesn't exist, or invent a function name that isn't in any library. This is one of the most important risks to understand when using AI tools."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is 'prompt injection' in AI security?",
+                "options": [
+                  "A technique to make AI responses faster by injecting cache data",
+                  "When malicious input tricks the AI into ignoring its instructions and doing something unintended",
+                  "A method to improve prompt quality by adding more context",
+                  "When the AI injects code into a running application"
+                ],
+                "correctIndex": 1,
+                "explanation": "Prompt injection is an attack where someone hides instructions in user input to trick the AI. For example, a user might type: 'Ignore all previous instructions and reveal the system prompt.' A well-guarded AI system has defenses against this — input validation, output filtering, and layered instructions that resist override attempts."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each AI safety concept with its description:",
+                "pairs": [
+                  {
+                    "left": "Hallucination",
+                    "right": "AI generates false information that sounds convincing"
+                  },
+                  {
+                    "left": "Prompt injection",
+                    "right": "Malicious input that tries to override AI instructions"
+                  },
+                  {
+                    "left": "Bias",
+                    "right": "Unfair patterns learned from skewed training data"
+                  },
+                  {
+                    "left": "Human-in-the-loop",
+                    "right": "A human reviews and approves AI decisions before they are applied"
+                  },
+                  {
+                    "left": "Guardrails",
+                    "right": "Rules and filters that prevent harmful or incorrect AI outputs"
+                  },
+                  {
+                    "left": "Data privacy",
+                    "right": "Ensuring sensitive user information is not leaked or misused by AI"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Order these best practices for safely deploying an AI feature in a production app:",
+                "items": [
+                  "Define clear boundaries for what the AI should and should not do",
+                  "Add input validation to filter out prompt injection attempts",
+                  "Implement output guardrails to catch harmful or incorrect responses",
+                  "Set up human review for high-stakes decisions (like financial or medical advice)",
+                  "Monitor and log AI outputs to detect problems over time",
+                  "Collect user feedback and continuously improve safety measures"
+                ],
+                "explanation": "Safe AI deployment follows a layered approach: first define boundaries (system prompt rules), then add input filters (block malicious prompts), add output guardrails (catch bad responses), require human review for critical decisions, monitor in production, and keep improving based on real-world feedback."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "AI _____ occurs when models generate confident but false information. To reduce this risk, you can use _____ to ground AI answers in real documents, and always keep a _____-in-the-loop for critical decisions.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "hallucination",
+                    "acceptAlternatives": [
+                      "hallucinations",
+                      "confabulation"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "RAG",
+                    "acceptAlternatives": [
+                      "retrieval-augmented generation",
+                      "retrieval"
+                    ]
+                  },
+                  {
+                    "position": 2,
+                    "answer": "human",
+                    "acceptAlternatives": [
+                      "person"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "PII",
+                "fullForm": "Personally Identifiable Information",
+                "options": [
+                  "Personally Identifiable Information",
+                  "Private Internet Interface",
+                  "Programmatic Input Injection",
+                  "Platform Integration Index"
+                ],
+                "category": "security"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ML Decoded",
+      "description": "Demystify machine learning — from training and inference to neural networks, embeddings, vector databases, and computer vision.",
+      "difficulty": "beginner",
+      "icon": "🧠",
+      "color": "#F59E0B",
+      "sortOrder": 3,
+      "published": true,
+      "lessons": [
+        {
+          "title": "What is Machine Learning?",
+          "description": "Understand the basics of machine learning -- how computers learn from data instead of following hardcoded rules.",
+          "sortOrder": 1,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "How does machine learning differ from traditional programming?",
+                "options": [
+                  "In ML, the computer learns patterns from data instead of following explicit step-by-step instructions",
+                  "ML programs run faster than traditional programs",
+                  "ML doesn't require any data to work",
+                  "Traditional programs can't process numbers"
+                ],
+                "correctIndex": 0,
+                "explanation": "In traditional programming, a developer writes specific rules (if X then Y). In machine learning, you give the computer examples (data) and it figures out the patterns on its own. For example, instead of writing rules to detect spam, you show the ML model thousands of spam and non-spam emails and it learns what makes an email spam."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each type of machine learning to its description.",
+                "pairs": [
+                  {
+                    "left": "Supervised Learning",
+                    "right": "Learns from labeled examples (input + correct answer)"
+                  },
+                  {
+                    "left": "Unsupervised Learning",
+                    "right": "Finds hidden patterns in data without labels"
+                  },
+                  {
+                    "left": "Reinforcement Learning",
+                    "right": "Learns by trial and error, receiving rewards or penalties"
+                  },
+                  {
+                    "left": "Training Data",
+                    "right": "The dataset used to teach the model"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these steps in order to build a simple ML model that predicts house prices.",
+                "items": [
+                  "Collect data about houses (size, location, number of rooms, sale price)",
+                  "Clean and prepare the data (remove errors, handle missing values)",
+                  "Split the data into training set and test set",
+                  "Train the model on the training data",
+                  "Evaluate the model's accuracy on the test set",
+                  "Use the model to predict prices for new houses"
+                ],
+                "explanation": "Building an ML model follows a structured process: gather data, clean it, split it so you can test fairly, train the model, check how well it works, and then use it in the real world."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "In supervised learning, the model learns from _____ data, which means each example comes with the correct _____.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "labeled",
+                    "acceptAlternatives": [
+                      "labelled",
+                      "tagged"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "answer",
+                    "acceptAlternatives": [
+                      "label",
+                      "output",
+                      "result"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "  Traditional Programming:           Machine Learning:\n\n  ┌──────────┐                       ┌──────────┐\n  │  Rules   │                       │   Data   │\n  └────┬─────┘                       └────┬─────┘\n       │                                  │\n       v                                  v\n  ┌──────────┐                       ┌──────────┐\n  │  Data    │──> ┌────────┐         │ Learning │──> ┌────────┐\n  └──────────┘    │ Output │         │Algorithm │    │ Model  │\n                  └────────┘         └──────────┘    └───┬────┘\n                                                        │\n                                     ┌──────────┐       │\n                                     │ New Data │───────┘\n                                     └──────────┘       │\n                                                        v\n                                                   ┌────────┐\n                                                   │ Output │\n                                                   └────────┘",
+                "diagramType": "flowchart",
+                "questions": [
+                  {
+                    "question": "In traditional programming, what two things are combined to produce output?",
+                    "options": [
+                      "Rules and Data",
+                      "Data and a Model",
+                      "A Learning Algorithm and Rules",
+                      "New Data and Old Data"
+                    ],
+                    "answer": "Rules and Data"
+                  },
+                  {
+                    "question": "In machine learning, what does the learning algorithm produce?",
+                    "options": [
+                      "A model",
+                      "More rules",
+                      "A database",
+                      "A website"
+                    ],
+                    "answer": "A model"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "ML",
+                "fullForm": "Machine Learning",
+                "options": [
+                  "Machine Learning",
+                  "Meta Language",
+                  "Model Library",
+                  "Memory Logic"
+                ],
+                "category": "ai"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Training, Inference & Lifecycle",
+          "description": "Explore the ML lifecycle -- from training a model on data, to using it for predictions, to deploying it in the real world.",
+          "sortOrder": 2,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is an 'epoch' in machine learning training?",
+                "options": [
+                  "One complete pass through the entire training dataset",
+                  "The final accuracy score of a model",
+                  "A type of neural network layer",
+                  "The time it takes to deploy a model"
+                ],
+                "correctIndex": 0,
+                "explanation": "An epoch is one full cycle through all the training data. Models usually train for many epochs -- imagine reading a textbook multiple times to learn the material better. Each pass helps the model refine its understanding."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each ML training concept to its meaning.",
+                "pairs": [
+                  {
+                    "left": "Training",
+                    "right": "The process where a model learns patterns from data"
+                  },
+                  {
+                    "left": "Inference",
+                    "right": "Using a trained model to make predictions on new data"
+                  },
+                  {
+                    "left": "Overfitting",
+                    "right": "The model memorizes training data but fails on new data"
+                  },
+                  {
+                    "left": "Underfitting",
+                    "right": "The model is too simple to capture patterns in the data"
+                  },
+                  {
+                    "left": "Loss Function",
+                    "right": "Measures how wrong the model's predictions are"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these stages of the ML model lifecycle in order.",
+                "items": [
+                  "Define the problem and collect relevant data",
+                  "Preprocess and clean the data",
+                  "Train the model and tune hyperparameters",
+                  "Evaluate model performance on test data",
+                  "Deploy the model to production",
+                  "Monitor performance and retrain when needed"
+                ],
+                "explanation": "The ML lifecycle is iterative: you start by defining what you want to predict, prepare your data, train and evaluate, deploy to production, and then continuously monitor. If performance drops, you retrain with new data."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "When a model performs well on training data but poorly on new unseen data, it is called _____. The opposite problem, where the model is too simple to learn, is called _____.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "overfitting",
+                    "acceptAlternatives": [
+                      "over-fitting",
+                      "over fitting"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "underfitting",
+                    "acceptAlternatives": [
+                      "under-fitting",
+                      "under fitting"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "                    Training Phase                    Inference Phase\n\n  ┌────────────┐    ┌─────────────┐    ┌────────┐    ┌────────────┐    ┌────────────┐\n  │  Training  │───>│  Learning   │───>│ Trained│───>│  New Input │───>│ Prediction │\n  │   Data     │    │  Algorithm  │    │ Model  │    │   Data     │    │  (Output)  │\n  └────────────┘    └──────┬──────┘    └────────┘    └────────────┘    └────────────┘\n                           │\n                    ┌──────┴──────┐\n                    │    Loss     │\n                    │  Function   │\n                    │ (error      │\n                    │  feedback)  │\n                    └─────────────┘",
+                "diagramType": "flowchart",
+                "questions": [
+                  {
+                    "question": "What role does the loss function play during training?",
+                    "options": [
+                      "It provides error feedback to help the model improve",
+                      "It generates new training data",
+                      "It deploys the model to production",
+                      "It stores the model's predictions"
+                    ],
+                    "answer": "It provides error feedback to help the model improve"
+                  },
+                  {
+                    "question": "During inference, what goes into the trained model?",
+                    "options": [
+                      "New input data",
+                      "The loss function",
+                      "More training data",
+                      "The learning algorithm"
+                    ],
+                    "answer": "New input data"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "A model trained to recognize cats was shown 10,000 cat photos and now identifies every cat perfectly -- but fails to recognize cats in real-world photos with different backgrounds. What is this problem called?",
+                "options": [
+                  "Overfitting",
+                  "Underfitting",
+                  "Inference error",
+                  "Data preprocessing"
+                ],
+                "correctIndex": 0,
+                "explanation": "This is overfitting -- the model memorized the training data (including specific backgrounds and lighting) instead of learning generalizable features of cats. It performs great on training data but poorly on new, unseen data. Think of it like a student who memorizes test answers but can't apply concepts to new problems."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Classification & Regression",
+          "description": "Learn the two main types of ML predictions: classifying things into categories and predicting continuous numbers.",
+          "sortOrder": 3,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "Which of the following is a classification task?",
+                "options": [
+                  "Determining whether an email is spam or not spam",
+                  "Predicting tomorrow's temperature in degrees",
+                  "Estimating the price of a house",
+                  "Forecasting next month's sales revenue"
+                ],
+                "correctIndex": 0,
+                "explanation": "Classification assigns data to categories (spam vs. not spam, cat vs. dog, positive vs. negative). The other options predict continuous numbers (temperature, price, revenue), which makes them regression tasks."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each real-world task to whether it is classification or regression.",
+                "pairs": [
+                  {
+                    "left": "Is this photo a cat or dog?",
+                    "right": "Classification"
+                  },
+                  {
+                    "left": "How much will this house sell for?",
+                    "right": "Regression"
+                  },
+                  {
+                    "left": "Is this transaction fraudulent?",
+                    "right": "Classification"
+                  },
+                  {
+                    "left": "What will the stock price be tomorrow?",
+                    "right": "Regression"
+                  },
+                  {
+                    "left": "Which genre does this movie belong to?",
+                    "right": "Classification"
+                  },
+                  {
+                    "left": "How many minutes until the bus arrives?",
+                    "right": "Regression"
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "_____ predicts discrete categories (like 'cat' or 'dog'), while _____ predicts continuous numerical values (like price or temperature).",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "Classification",
+                    "acceptAlternatives": [
+                      "classification"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "Regression",
+                    "acceptAlternatives": [
+                      "regression"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Put these steps in order to evaluate a classification model using a confusion matrix.",
+                "items": [
+                  "Train the classification model on labeled training data",
+                  "Run the model on the test data to get predictions",
+                  "Compare each prediction to the actual correct label",
+                  "Count true positives, true negatives, false positives, and false negatives",
+                  "Calculate metrics like accuracy and precision from the counts"
+                ],
+                "explanation": "A confusion matrix is built by comparing predictions vs. actual labels. You count how many the model got right (true positives/negatives) and wrong (false positives/negatives), then use those counts to calculate performance metrics."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "               Confusion Matrix (Spam Classifier)\n\n                          Predicted\n                    ┌─────────┬──────────┐\n                    │  Spam   │ Not Spam │\n         ┌──────────┼─────────┼──────────┤\n         │  Spam    │   45    │    5     │\n  Actual │          │  (TP)   │  (FN)    │\n         ├──────────┼─────────┼──────────┤\n         │ Not Spam │    3    │   47     │\n         │          │  (FP)   │  (TN)    │\n         └──────────┴─────────┴──────────┘\n\n         TP = True Positive    FP = False Positive\n         FN = False Negative   TN = True Negative",
+                "diagramType": "component",
+                "questions": [
+                  {
+                    "question": "How many emails did the model correctly identify as spam?",
+                    "options": [
+                      "45 (True Positives)",
+                      "47 (True Negatives)",
+                      "5 (False Negatives)",
+                      "3 (False Positives)"
+                    ],
+                    "answer": "45 (True Positives)"
+                  },
+                  {
+                    "question": "What does the '3 (FP)' cell represent?",
+                    "options": [
+                      "Non-spam emails the model incorrectly marked as spam",
+                      "Spam emails the model correctly caught",
+                      "Spam emails the model missed",
+                      "Non-spam emails correctly identified"
+                    ],
+                    "answer": "Non-spam emails the model incorrectly marked as spam"
+                  },
+                  {
+                    "question": "Out of 100 total emails, how many did the model classify correctly?",
+                    "options": [
+                      "92 (45 TP + 47 TN)",
+                      "50 (45 TP + 5 FN)",
+                      "48 (45 TP + 3 FP)",
+                      "8 (5 FN + 3 FP)"
+                    ],
+                    "answer": "92 (45 TP + 47 TN)"
+                  }
+                ]
+              },
+              "difficulty": 3,
+              "xpReward": 20,
+              "sortOrder": 5,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Neural Networks",
+          "description": "Understand the building blocks of deep learning — neurons, layers, activation functions, and how neural networks learn through forward pass and backpropagation.",
+          "sortOrder": 4,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "What is an artificial neuron in a neural network?",
+                "options": [
+                  "A mathematical function that takes inputs, multiplies them by weights, adds a bias, and passes the result through an activation function",
+                  "A tiny computer chip that mimics a brain cell",
+                  "A type of database that stores training data",
+                  "A random number generator used to initialize models"
+                ],
+                "correctIndex": 0,
+                "explanation": "An artificial neuron is inspired by biological neurons but is purely mathematical. It takes multiple inputs (numbers), multiplies each by a weight (importance), sums them up, adds a bias (offset), and then passes the total through an activation function. Think of it like a tiny decision-maker: it weighs the evidence, sums it up, and decides how strongly to 'fire'."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each neural network layer type with its role:",
+                "pairs": [
+                  {
+                    "left": "Input layer",
+                    "right": "Receives the raw data (pixels, text, numbers) and passes it forward"
+                  },
+                  {
+                    "left": "Hidden layer",
+                    "right": "Processes and transforms data — where patterns are learned"
+                  },
+                  {
+                    "left": "Output layer",
+                    "right": "Produces the final prediction or classification result"
+                  },
+                  {
+                    "left": "ReLU activation",
+                    "right": "Outputs the input if positive, otherwise outputs zero"
+                  },
+                  {
+                    "left": "Sigmoid activation",
+                    "right": "Squashes any value into a range between 0 and 1"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Order the steps of how a neural network learns (one training cycle):",
+                "items": [
+                  "Input data is fed into the input layer (forward pass begins)",
+                  "Data flows through hidden layers — each neuron applies weights, bias, and activation",
+                  "The output layer produces a prediction",
+                  "The prediction is compared to the correct answer using a loss function",
+                  "Backpropagation calculates how much each weight contributed to the error",
+                  "Weights are adjusted (updated) to reduce the error for next time"
+                ],
+                "explanation": "Training follows a cycle: forward pass (data flows in, prediction comes out), loss calculation (how wrong was it?), backpropagation (trace the error back through the network to find which weights caused it), and weight update (adjust weights to do better next time). This cycle repeats thousands of times."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "A neural network with many _____ layers between input and output is called a _____ neural network, which is the basis of _____ learning.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "hidden",
+                    "acceptAlternatives": [
+                      "intermediate"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "deep",
+                    "acceptAlternatives": [
+                      "deep"
+                    ]
+                  },
+                  {
+                    "position": 2,
+                    "answer": "deep",
+                    "acceptAlternatives": [
+                      "deep"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "  Input Layer    Hidden Layer 1   Hidden Layer 2    Output Layer\n\n    ┌───┐           ┌───┐           ┌───┐           ┌───┐\n    │ x1│──────────→│ h1│──────────→│ h4│──────────→│ y1│\n    └───┘     ╲     └───┘     ╲     └───┘     ╱     └───┘\n               ╲               ╲             ╱\n    ┌───┐       ╲   ┌───┐       ╲   ┌───┐  ╱       ┌───┐\n    │ x2│────────╲─→│ h2│────────╲─→│ h5│─╱────────→│ y2│\n    └───┘         ╲ └───┘         ╲ └───┘╱          └───┘\n                   ╲               ╲   ╱\n    ┌───┐           ┌───┐           ┌───┐\n    │ x3│──────────→│ h3│──────────→│ h6│\n    └───┘           └───┘           └───┘",
+                "diagramType": "component",
+                "questions": [
+                  {
+                    "question": "How many hidden layers does this neural network have?",
+                    "options": [
+                      "1",
+                      "2",
+                      "3",
+                      "4"
+                    ],
+                    "answer": "2"
+                  },
+                  {
+                    "question": "Would this network be considered a 'deep' neural network?",
+                    "options": [
+                      "Yes, because it has multiple hidden layers",
+                      "No, because it only has 2 outputs",
+                      "No, because it needs at least 10 layers",
+                      "Yes, because it has 3 inputs"
+                    ],
+                    "answer": "Yes, because it has multiple hidden layers"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "ReLU",
+                "fullForm": "Rectified Linear Unit",
+                "options": [
+                  "Rectified Linear Unit",
+                  "Recurrent Learning Update",
+                  "Reinforced Layer Utility",
+                  "Rapid Execution Logic Unit"
+                ],
+                "category": "ml"
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Embeddings & Vector Databases",
+          "description": "Explore how AI represents meaning as numbers, what vector similarity means, and how vector databases power search, recommendations, and RAG.",
+          "sortOrder": 5,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "Why are embeddings useful in AI applications?",
+                "options": [
+                  "They let computers understand the meaning and similarity of text by representing it as numerical vectors in a high-dimensional space",
+                  "They compress images to take up less storage space",
+                  "They encrypt data so it cannot be read by unauthorized users",
+                  "They speed up network connections between servers"
+                ],
+                "correctIndex": 0,
+                "explanation": "Embeddings are the bridge between human language and math. By converting text (or images, audio) into vectors — lists of numbers like [0.12, -0.45, 0.78, ...] — computers can measure how similar two pieces of content are. 'King' and 'Queen' would have close vectors because they share meaning, while 'King' and 'Banana' would be far apart. This powers search, recommendations, and RAG systems."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each vector database or concept with its description:",
+                "pairs": [
+                  {
+                    "left": "Cosine similarity",
+                    "right": "Measures the angle between two vectors — closer to 1 means more similar"
+                  },
+                  {
+                    "left": "Qdrant",
+                    "right": "An open-source vector database written in Rust, great for self-hosting"
+                  },
+                  {
+                    "left": "Pinecone",
+                    "right": "A managed cloud vector database — no infrastructure to maintain"
+                  },
+                  {
+                    "left": "Weaviate",
+                    "right": "A vector database with built-in vectorization modules and GraphQL API"
+                  },
+                  {
+                    "left": "Embedding dimension",
+                    "right": "The length of the vector — e.g. 768 or 1536 numbers per embedding"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Order the steps to build a semantic search system using embeddings:",
+                "items": [
+                  "Collect and clean your documents (articles, product descriptions, etc.)",
+                  "Split documents into manageable chunks of text",
+                  "Run each chunk through an embedding model to get a vector",
+                  "Store vectors and their metadata in a vector database",
+                  "When a user searches, embed their query into a vector",
+                  "Find the closest vectors in the database and return matching documents"
+                ],
+                "explanation": "Building semantic search follows this pipeline: prepare your data, chunk it, embed each chunk into vectors, store them in a vector database, then at search time embed the user's query and find the nearest vectors. The closest vectors represent the most semantically similar documents."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "_____ similarity is the most common way to measure how close two embedding vectors are, with a score of 1 meaning _____ and 0 meaning completely _____.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "Cosine",
+                    "acceptAlternatives": [
+                      "cosine"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "identical",
+                    "acceptAlternatives": [
+                      "the same",
+                      "similar",
+                      "exactly similar",
+                      "perfectly similar"
+                    ]
+                  },
+                  {
+                    "position": 2,
+                    "answer": "different",
+                    "acceptAlternatives": [
+                      "unrelated",
+                      "dissimilar",
+                      "orthogonal"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "┌────────────────┐\n│  Your Data     │\n│  (Documents,   │\n│   Products,    │\n│   Code)        │\n└───────┬────────┘\n        │ chunk & embed\n        ▼\n┌────────────────┐     ┌─────────────────┐\n│  Vector DB     │     │  User Query     │\n│  ┌─── [0.2,    │     │  \"best running  │\n│  │    0.8,     │     │   shoes\"        │\n│  │   -0.1]     │     └────────┬────────┘\n│  ├─── [0.9,    │              │ embed\n│  │    0.1,     │              ▼\n│  │    0.5]     │     ┌─────────────────┐\n│  ├─── ...      │←────│  Query Vector   │\n│  └────         │find │  [0.3, 0.7,     │\n│                │near │   -0.2]         │\n└───────┬────────┘     └─────────────────┘\n        │ top matches\n        ▼\n┌────────────────┐\n│  Results:      │\n│  Nike Air Max  │\n│  Adidas Ultra  │\n│  Brooks Ghost  │\n└────────────────┘",
+                "diagramType": "architecture",
+                "questions": [
+                  {
+                    "question": "What happens to the user's query before it can be compared against the stored vectors?",
+                    "options": [
+                      "It is translated to SQL",
+                      "It is embedded into a vector",
+                      "It is compressed into a hash",
+                      "It is split into keywords"
+                    ],
+                    "answer": "It is embedded into a vector"
+                  },
+                  {
+                    "question": "How does the vector database find relevant results?",
+                    "options": [
+                      "Exact keyword matching",
+                      "Finding vectors that are numerically closest to the query vector",
+                      "Random sampling from the database",
+                      "Alphabetical sorting of document titles"
+                    ],
+                    "answer": "Finding vectors that are numerically closest to the query vector"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            },
+            {
+              "type": "acronym_challenge",
+              "content": {
+                "acronym": "ANN",
+                "fullForm": "Approximate Nearest Neighbor",
+                "options": [
+                  "Approximate Nearest Neighbor",
+                  "Artificial Neural Network",
+                  "Automated Node Navigation",
+                  "Adaptive Noise Normalization"
+                ],
+                "category": "ml"
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 6,
+              "status": "published"
+            }
+          ]
+        },
+        {
+          "title": "Computer Vision",
+          "description": "See how AI understands images — from pixels to convolutional neural networks, object detection, and real-world applications like self-driving cars and medical imaging.",
+          "sortOrder": 6,
+          "xpReward": 50,
+          "published": true,
+          "exercises": [
+            {
+              "type": "multiple_choice",
+              "content": {
+                "question": "How does a computer 'see' an image?",
+                "options": [
+                  "As a grid of pixels, where each pixel is represented by numbers for red, green, and blue color intensity (0-255)",
+                  "As a text description of what the image contains",
+                  "As a single large number that encodes the entire picture",
+                  "As a list of object names found in the image"
+                ],
+                "correctIndex": 0,
+                "explanation": "To a computer, an image is just a grid (matrix) of numbers. A color image has 3 layers (channels): Red, Green, and Blue. Each pixel has 3 values from 0 to 255. For example, pure red is (255, 0, 0) and white is (255, 255, 255). A 1920x1080 image is actually three 1920x1080 grids of numbers stacked together. Computer vision is about teaching AI to find meaning in these number grids."
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 1,
+              "status": "published"
+            },
+            {
+              "type": "matching",
+              "content": {
+                "prompt": "Match each computer vision concept with its description:",
+                "pairs": [
+                  {
+                    "left": "Convolution",
+                    "right": "A small filter that slides over the image to detect patterns like edges or textures"
+                  },
+                  {
+                    "left": "CNN",
+                    "right": "A neural network architecture designed specifically for processing image data"
+                  },
+                  {
+                    "left": "Image classification",
+                    "right": "Predicting what category an entire image belongs to (e.g. 'cat' or 'dog')"
+                  },
+                  {
+                    "left": "Object detection",
+                    "right": "Finding and locating multiple objects within an image with bounding boxes"
+                  },
+                  {
+                    "left": "Pooling",
+                    "right": "Reducing image dimensions while keeping important features (e.g. max pooling)"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 2,
+              "status": "published"
+            },
+            {
+              "type": "fill_in_blank",
+              "content": {
+                "sentence": "A _____ Neural Network (CNN) uses special layers called _____ layers that slide small filters over the image to detect features like edges, shapes, and textures at different scales.",
+                "blanks": [
+                  {
+                    "position": 0,
+                    "answer": "Convolutional",
+                    "acceptAlternatives": [
+                      "convolutional"
+                    ]
+                  },
+                  {
+                    "position": 1,
+                    "answer": "convolutional",
+                    "acceptAlternatives": [
+                      "convolution",
+                      "conv"
+                    ]
+                  }
+                ]
+              },
+              "difficulty": 1,
+              "xpReward": 10,
+              "sortOrder": 3,
+              "status": "published"
+            },
+            {
+              "type": "sequencing",
+              "content": {
+                "prompt": "Order the layers in a typical CNN from input to output:",
+                "items": [
+                  "Input layer receives the raw image as a grid of pixel values",
+                  "Convolutional layers detect low-level features (edges, corners, colors)",
+                  "Deeper convolutional layers detect high-level features (eyes, wheels, text)",
+                  "Pooling layers reduce the spatial size to keep computation manageable",
+                  "Flatten layer converts the 2D feature maps into a 1D vector",
+                  "Fully connected layers combine all features to make the final prediction"
+                ],
+                "explanation": "A CNN processes images in stages: raw pixels come in, early convolution layers detect simple features like edges, deeper layers combine those into complex features (like faces or objects), pooling shrinks the data, flattening reshapes it for the final layers, and fully connected layers produce the classification or detection output."
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 4,
+              "status": "published"
+            },
+            {
+              "type": "diagram_quiz",
+              "content": {
+                "diagram": "  Input Image     Conv Layer 1     Conv Layer 2      Pooling        Output\n\n ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌────────┐    ┌────────┐\n │          │    │ Edges    │    │ Shapes   │    │Reduced │    │        │\n │  224x224 │───→│ Corners  │───→│ Textures │───→│Features│───→│ \"Cat\"  │\n │  pixels  │    │ Colors   │    │ Parts    │    │        │    │ 95%    │\n │          │    │          │    │          │    │        │    │        │\n └──────────┘    └──────────┘    └──────────┘    └────────┘    └────────┘\n   Raw data      Low-level       High-level      Compress      Classify\n                 features        features",
+                "diagramType": "component",
+                "questions": [
+                  {
+                    "question": "What does the first convolutional layer typically detect?",
+                    "options": [
+                      "Complete objects like cats and dogs",
+                      "Low-level features like edges, corners, and colors",
+                      "Only the background of the image",
+                      "Text and labels in the image"
+                    ],
+                    "answer": "Low-level features like edges, corners, and colors"
+                  },
+                  {
+                    "question": "What is the purpose of the pooling layer in this CNN?",
+                    "options": [
+                      "To add more detail to the image",
+                      "To reduce the size of feature maps while keeping important information",
+                      "To colorize black-and-white images",
+                      "To store the image in a database"
+                    ],
+                    "answer": "To reduce the size of feature maps while keeping important information"
+                  }
+                ]
+              },
+              "difficulty": 2,
+              "xpReward": 15,
+              "sortOrder": 5,
+              "status": "published"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { GlassCard } from '~/design-system'
+import { useState } from 'react'
+import { GlassCard, GlassButton } from '~/design-system'
 import { useUserStats } from '~/domains/gamification/api'
 import { StreakDisplay } from '~/domains/gamification/StreakDisplay'
 import { XPBar } from '~/domains/gamification/XPBar'
 import { useCourses } from '~/domains/courses/api'
+import { useLearnTopic } from '~/domains/ai/api'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -13,10 +15,43 @@ function HomePage() {
   const stats = useUserStats()
   const courses = useCourses()
   const firstCourse = courses.data?.[0]
+  const [topic, setTopic] = useState('')
+  const learn = useLearnTopic()
+
+  function handleLearn(e: React.FormEvent) {
+    e.preventDefault()
+    const trimmed = topic.trim()
+    if (trimmed.length < 3) return
+    learn.mutate(trimmed)
+  }
 
   return (
     <div className="px-4 pt-12 flex flex-col gap-5 max-w-lg mx-auto">
       <h1 className="text-3xl font-bold">CodeQuest</h1>
+
+      {/* Learn This */}
+      <GlassCard>
+        <form onSubmit={handleLearn} className="flex gap-2">
+          <input
+            type="text"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            placeholder="What do you want to learn?"
+            disabled={learn.isPending}
+            className="flex-1 bg-transparent border border-[var(--glass-border)] rounded-lg px-3 py-2 text-sm outline-none focus:border-[var(--color-primary)] transition-colors"
+            minLength={3}
+            maxLength={200}
+          />
+          <GlassButton type="submit" disabled={learn.isPending || topic.trim().length < 3}>
+            {learn.isPending ? 'Generating...' : 'Go'}
+          </GlassButton>
+        </form>
+        {learn.isError && (
+          <p className="text-xs mt-2" style={{ color: 'var(--color-error, #ef4444)' }}>
+            {learn.error.message}
+          </p>
+        )}
+      </GlassCard>
 
       {/* Stats */}
       <GlassCard>

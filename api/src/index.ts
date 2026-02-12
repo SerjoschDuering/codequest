@@ -8,12 +8,17 @@ import { progressRoutes } from './domains/progress/routes'
 import { gamificationRoutes } from './domains/gamification/routes'
 import { notesRoutes } from './domains/notes/routes'
 import { aiRoutes } from './domains/ai/routes'
+import { contentRoutes } from './domains/content/routes'
 
 export type Bindings = {
   DB: D1Database
   AI: Ai
   BETTER_AUTH_SECRET: string
   BETTER_AUTH_URL: string
+  GITHUB_CLIENT_ID?: string
+  GITHUB_CLIENT_SECRET?: string
+  GOOGLE_CLIENT_ID?: string
+  GOOGLE_CLIENT_SECRET?: string
 }
 
 export type AppEnv = {
@@ -48,5 +53,6 @@ app.route('/api/progress', progressRoutes)
 app.route('/api/gamification', gamificationRoutes)
 app.route('/api/notes', notesRoutes)
 app.route('/api/ai', aiRoutes)
+app.route('/api/content', contentRoutes)
 
 export default app

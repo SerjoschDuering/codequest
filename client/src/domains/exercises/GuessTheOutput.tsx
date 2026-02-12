@@ -18,10 +18,11 @@ export function GuessTheOutput({ content, onAnswer }: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [submitted, setSubmitted] = useState(false)
 
-  function handleSubmit() {
-    if (selected === null) return
+  function handleSelect(i: number) {
+    if (submitted) return
+    setSelected(i)
     setSubmitted(true)
-    onAnswer(selected, selected === content.correctIndex)
+    onAnswer(i, i === content.correctIndex)
   }
 
   return (
@@ -38,14 +39,13 @@ export function GuessTheOutput({ content, onAnswer }: Props) {
           let borderColor = 'var(--glass-border)'
           if (submitted && i === content.correctIndex) borderColor = 'var(--color-success)'
           else if (submitted && i === selected) borderColor = 'var(--color-danger)'
-          else if (i === selected) borderColor = 'var(--color-primary)'
 
           return (
             <GlassCard
               key={i}
-              onClick={submitted ? undefined : () => setSelected(i)}
+              onClick={() => handleSelect(i)}
               className="!py-2 font-mono text-sm"
-              style={{ borderColor }}
+              style={{ borderColor, opacity: submitted && i !== selected && i !== content.correctIndex ? 0.5 : 1 }}
             >
               {opt}
             </GlassCard>
@@ -54,11 +54,6 @@ export function GuessTheOutput({ content, onAnswer }: Props) {
       </div>
       {submitted && content.explanation && (
         <p className="text-[13px] text-[var(--text-secondary)]">{content.explanation}</p>
-      )}
-      {!submitted && (
-        <GlassButton onClick={handleSubmit} disabled={selected === null} fullWidth>
-          Check Answer
-        </GlassButton>
       )}
     </div>
   )

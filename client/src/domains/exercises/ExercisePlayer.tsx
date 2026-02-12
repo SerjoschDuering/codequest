@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { GlassButton, XPPopup } from '~/design-system'
 import type { Exercise, SubmitResult } from './api'
 import { useSubmitAnswer } from './api'
@@ -23,6 +23,7 @@ export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [showXP, setShowXP] = useState(false)
   const submit = useSubmitAnswer()
+  const autoAdvanceTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const exercise = exercises[currentIdx]
   if (!exercise) return null
@@ -30,6 +31,18 @@ export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
   const content = JSON.parse(exercise.content)
   const progress = ((currentIdx + 1) / exercises.length) * 100
   const isLast = currentIdx === exercises.length - 1
+
+  // Auto-advance on correct answer after delay
+  useEffect(() => {
+    if (result?.correct) {
+      autoAdvanceTimer.current = setTimeout(() => {
+        setResult(null)
+        if (isLast) onComplete()
+        else setCurrentIdx(prev => prev + 1)
+      }, 1200)
+    }
+    return () => { if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current) }
+  }, [result, isLast, onComplete])
 
   async function handleAnswer(answer: unknown, correct: boolean) {
     const res = await submit.mutateAsync({
@@ -43,12 +56,10 @@ export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
   }
 
   function handleNext() {
+    if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current)
     setResult(null)
-    if (isLast) {
-      onComplete()
-    } else {
-      setCurrentIdx(currentIdx + 1)
-    }
+    if (isLast) onComplete()
+    else setCurrentIdx(currentIdx + 1)
   }
 
   function renderExercise() {
@@ -94,9 +105,11 @@ export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
           >
             {result.correct ? 'Correct!' : 'Not quite'}
           </div>
-          <GlassButton onClick={handleNext} fullWidth>
-            {isLast ? 'Complete Lesson' : 'Next'}
-          </GlassButton>
+          {!result.correct && (
+            <GlassButton onClick={handleNext} fullWidth>
+              {isLast ? 'Complete Lesson' : 'Next'}
+            </GlassButton>
+          )}
         </div>
       )}
 

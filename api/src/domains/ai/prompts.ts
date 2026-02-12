@@ -24,3 +24,7 @@ export function buildGeneratePrompt(text: string): string {
 export function buildNotesPrompt(noteContent: string): string {
   return `A student wrote these learning notes. Generate exercises to help them review and retain the concepts:\n\n${noteContent}`
 }
+
+export function buildTopicPrompt(topic: string): string {
+  return `A student wants to learn about "${topic}". Generate 3-5 exercises that teach the core concepts of this topic. Start from fundamentals and progress to slightly harder questions. Use varied exercise types (multiple_choice, code_completion, guess_output, fill_in_blank, spot_the_bug). Make the exercises educational and self-contained — the student has no lesson material, only these exercises.`
+}

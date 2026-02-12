@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { GlassCard, GlassButton } from '~/design-system'
+import { GlassCard } from '~/design-system'
 
 type Content = { prompt: string; items: string[]; explanation?: string }
 
@@ -24,15 +24,17 @@ export function Sequencing({ content, onAnswer }: Props) {
     if (submitted) return
     if (order.includes(item)) {
       setOrder(order.filter(i => i !== item))
-    } else {
-      setOrder([...order, item])
+      return
     }
-  }
+    const nextOrder = [...order, item]
+    setOrder(nextOrder)
 
-  function handleSubmit() {
-    const correct = order.every((item, i) => item === content.items[i])
-    setSubmitted(true)
-    onAnswer(order, correct)
+    // Auto-submit when all items ordered
+    if (nextOrder.length === content.items.length) {
+      const correct = nextOrder.every((it, i) => it === content.items[i])
+      setSubmitted(true)
+      setTimeout(() => onAnswer(nextOrder, correct), 400)
+    }
   }
 
   return (
@@ -72,11 +74,6 @@ export function Sequencing({ content, onAnswer }: Props) {
       </div>
       {submitted && content.explanation && (
         <p className="text-[13px] text-[var(--text-secondary)]">{content.explanation}</p>
-      )}
-      {!submitted && (
-        <GlassButton onClick={handleSubmit} disabled={order.length !== content.items.length} fullWidth>
-          Check Order
-        </GlassButton>
       )}
     </div>
   )
