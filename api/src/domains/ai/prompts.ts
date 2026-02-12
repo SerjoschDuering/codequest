@@ -25,6 +25,29 @@ export function buildNotesPrompt(noteContent: string): string {
   return `A student wrote these learning notes. Generate exercises to help them review and retain the concepts:\n\n${noteContent}`
 }
 
+export function buildEnhancePrompt(noteContent: string): string {
+  return `A student wrote these learning notes. Enhance them by adding:
+- Clearer explanations of the concepts mentioned
+- Practical examples or code snippets where relevant
+- Common pitfalls or misconceptions
+- Key takeaways
+
+Keep it concise (2-3 short paragraphs max). Write in a friendly, educational tone.
+Do NOT repeat the original notes — only add NEW information that complements them.
+Return ONLY the enhanced content as plain text (no JSON, no markdown headers).
+
+Student's notes:
+${noteContent}`
+}
+
+export function buildMultiNotesPrompt(notes: Array<{ title: string; content: string }>): string {
+  const count = Math.min(notes.length * 2 + 1, 8)
+  const notesBlock = notes
+    .map((n) => `--- Note: ${n.title} ---\n${n.content}`)
+    .join('\n\n')
+  return `A student took these study notes. Generate exercises to help them review and retain ALL the concepts across these notes. Mix exercise types. Reference specific details from the notes.\n\n${notesBlock}\n\nGenerate ${count} exercises covering key concepts from all notes above.`
+}
+
 export function buildTopicPrompt(topic: string): string {
   return `A student wants to learn about "${topic}". Generate 3-5 exercises that teach the core concepts of this topic. Start from fundamentals and progress to slightly harder questions. Use varied exercise types (multiple_choice, code_completion, guess_output, fill_in_blank, spot_the_bug). Make the exercises educational and self-contained — the student has no lesson material, only these exercises.`
 }

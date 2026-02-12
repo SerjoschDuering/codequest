@@ -6,6 +6,7 @@ export type Note = {
   lessonId: string | null
   title: string
   content: string
+  enhancedContent: string | null
   createdAt: string
   updatedAt: string
 }
@@ -48,17 +49,41 @@ export function useDeleteNote() {
   })
 }
 
-export function useGenerateFromNote() {
+export function useEnhanceNote() {
+  const qc = useQueryClient()
   return useMutation({
     mutationFn: async (noteId: string) => {
-      const res = await fetch('/api/ai/notes-to-exercises', {
+      const res = await fetch('/api/ai/enhance-note', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ noteId }),
       })
-      if (!res.ok) throw new Error('Failed to generate exercises')
-      return res.json()
+      if (!res.ok) throw new Error('Enhancement failed')
+      return res.json() as Promise<{ enhancedContent: string }>
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['notes'] }),
+  })
+}
+
+export function useGenerateNotesQuiz() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: async (noteIds: string[]) => {
+      const res = await fetch('/api/ai/notes-quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ noteIds }),
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        throw new Error((err as { error?: string }).error || 'Failed to generate quiz')
+      }
+      return res.json() as Promise<{ lessonId: string; courseId: string; exerciseCount: number }>
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['notes'] })
     },
   })
 }

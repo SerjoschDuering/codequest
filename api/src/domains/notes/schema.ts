@@ -10,6 +10,7 @@ export const userNotes = sqliteTable('user_notes', {
   lessonId: text('lesson_id').references(() => lessons.id, { onDelete: 'set null' }),
   title: text('title').notNull(),
   content: text('content').notNull(), // markdown text
+  enhancedContent: text('enhanced_content'), // AI-expanded explanation
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
 })
