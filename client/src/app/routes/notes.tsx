@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
-import { Trash } from '@phosphor-icons/react'
+import { Trash, Sparkle, ArrowClockwise, Lightning, CircleNotch } from '@phosphor-icons/react'
 import { GlassCard, GlassButton } from '~/design-system'
 import {
   useNotes, useCreateNote, useDeleteNote,
@@ -11,6 +11,26 @@ import {
 export const Route = createFileRoute('/notes')({
   component: NotesPage,
 })
+
+function IconBtn({ icon, label, color, onClick, disabled, active }: {
+  icon: React.ReactNode; label?: string; color?: string
+  onClick: (e: React.MouseEvent) => void; disabled?: boolean; active?: boolean
+}) {
+  return (
+    <button
+      onClick={onClick} disabled={disabled}
+      className="flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] font-medium active:scale-95 transition-all"
+      style={{
+        color: color || 'var(--text-secondary)',
+        background: active ? `color-mix(in srgb, ${color} 12%, transparent)` : 'transparent',
+        opacity: disabled ? 0.5 : 1,
+      }}
+    >
+      {icon}
+      {label && <span>{label}</span>}
+    </button>
+  )
+}
 
 function NoteCard({
   note, isSelected, onToggle, onQuizMe, onDelete, onEnhance,
@@ -55,53 +75,37 @@ function NoteCard({
             </div>
           )}
 
-          {/* Action buttons */}
-          <div className="flex flex-col gap-2">
-            {/* Secondary row */}
-            <div className="flex gap-2">
-              <GlassButton
-                variant="secondary"
-                onClick={(e: React.MouseEvent) => {
-                  e.stopPropagation()
-                  if (hasEnhanced) setFlipped(!flipped)
-                  else onEnhance()
-                }}
-                disabled={isEnhancing}
-                className="!text-xs !py-2 flex-1"
-              >
-                {isEnhancing ? 'Enhancing...' : hasEnhanced ? (flipped ? 'Original' : 'Enhanced') : 'Enhance'}
-              </GlassButton>
-              {note.lessonId && (
-                <GlassButton
-                  variant="secondary"
-                  onClick={(e: React.MouseEvent) => {
-                    e.stopPropagation()
-                    navigate({ to: '/lessons/$lessonId', params: { lessonId: note.lessonId! }, search: { from: 'notes' } })
-                  }}
-                  className="!text-xs !py-2 flex-1"
-                >
-                  Play Again
-                </GlassButton>
-              )}
-              <button
-                onClick={(e: React.MouseEvent) => { e.stopPropagation(); onDelete() }}
-                className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 active:scale-90 transition-transform"
-                style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}
-                aria-label="Delete note"
-              >
-                <Trash size={14} weight="bold" color="var(--color-danger)" />
-              </button>
-            </div>
-            {/* Primary CTA */}
-            <GlassButton
-              variant="primary"
-              onClick={(e: React.MouseEvent) => { e.stopPropagation(); onQuizMe() }}
+          {/* Icon toolbar */}
+          <div className="flex items-center gap-1 mt-1">
+            <IconBtn
+              icon={isEnhancing ? <CircleNotch size={15} className="animate-spin" /> : <Sparkle size={15} weight={hasEnhanced ? 'fill' : 'bold'} />}
+              label={isEnhancing ? 'Enhancing' : hasEnhanced ? (flipped ? 'Original' : 'Enhanced') : 'Enhance'}
+              color="var(--color-primary)"
+              onClick={(e) => { e.stopPropagation(); hasEnhanced ? setFlipped(!flipped) : onEnhance() }}
+              disabled={isEnhancing}
+              active={flipped}
+            />
+            {note.lessonId && (
+              <IconBtn
+                icon={<ArrowClockwise size={15} weight="bold" />}
+                label="Replay"
+                color="var(--color-teal)"
+                onClick={(e) => { e.stopPropagation(); navigate({ to: '/lessons/$lessonId', params: { lessonId: note.lessonId! }, search: { from: 'notes' } }) }}
+              />
+            )}
+            <IconBtn
+              icon={isGenerating ? <CircleNotch size={15} className="animate-spin" /> : <Lightning size={15} weight="fill" />}
+              label={isGenerating ? 'Creating' : note.lessonId ? 'Re-generate' : 'Generate'}
+              color="var(--color-warning)"
+              onClick={(e) => { e.stopPropagation(); onQuizMe() }}
               disabled={isGenerating}
-              fullWidth
-              className="!text-xs !py-2.5"
-            >
-              {isGenerating ? 'Creating...' : 'Quiz Me'}
-            </GlassButton>
+            />
+            <div className="flex-1" />
+            <IconBtn
+              icon={<Trash size={14} weight="bold" />}
+              color="var(--color-danger)"
+              onClick={(e) => { e.stopPropagation(); onDelete() }}
+            />
           </div>
         </div>
       </div>
