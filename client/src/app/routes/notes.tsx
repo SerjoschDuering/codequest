@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
+import { Trash } from '@phosphor-icons/react'
 import { GlassCard, GlassButton } from '~/design-system'
 import {
   useNotes, useCreateNote, useDeleteNote,
@@ -54,58 +55,52 @@ function NoteCard({
             </div>
           )}
 
-          <div className="flex gap-2 items-center flex-wrap">
-            {/* Enhance button */}
-            <GlassButton
-              variant="secondary"
-              onClick={(e: React.MouseEvent) => {
-                e.stopPropagation()
-                if (hasEnhanced) setFlipped(!flipped)
-                else onEnhance()
-              }}
-              disabled={isEnhancing}
-              className="!text-xs !py-2 !px-3"
-            >
-              {isEnhancing ? 'Enhancing...' : hasEnhanced ? (flipped ? 'Original' : 'Enhanced') : 'Enhance'}
-            </GlassButton>
-
-            {/* Play Again */}
-            {note.lessonId && (
+          {/* Action buttons */}
+          <div className="flex flex-col gap-2">
+            {/* Secondary row */}
+            <div className="flex gap-2">
               <GlassButton
                 variant="secondary"
                 onClick={(e: React.MouseEvent) => {
                   e.stopPropagation()
-                  navigate({ to: '/lessons/$lessonId', params: { lessonId: note.lessonId! }, search: { from: 'notes' } })
+                  if (hasEnhanced) setFlipped(!flipped)
+                  else onEnhance()
                 }}
-                className="!text-xs !py-2 !px-3"
+                disabled={isEnhancing}
+                className="!text-xs !py-2 flex-1"
               >
-                Play Again
+                {isEnhancing ? 'Enhancing...' : hasEnhanced ? (flipped ? 'Original' : 'Enhanced') : 'Enhance'}
               </GlassButton>
-            )}
-
-            {/* Quiz Me */}
+              {note.lessonId && (
+                <GlassButton
+                  variant="secondary"
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    navigate({ to: '/lessons/$lessonId', params: { lessonId: note.lessonId! }, search: { from: 'notes' } })
+                  }}
+                  className="!text-xs !py-2 flex-1"
+                >
+                  Play Again
+                </GlassButton>
+              )}
+              <button
+                onClick={(e: React.MouseEvent) => { e.stopPropagation(); onDelete() }}
+                className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 active:scale-90 transition-transform"
+                style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}
+                aria-label="Delete note"
+              >
+                <Trash size={14} weight="bold" color="var(--color-danger)" />
+              </button>
+            </div>
+            {/* Primary CTA */}
             <GlassButton
               variant="primary"
-              onClick={(e: React.MouseEvent) => {
-                e.stopPropagation()
-                onQuizMe()
-              }}
+              onClick={(e: React.MouseEvent) => { e.stopPropagation(); onQuizMe() }}
               disabled={isGenerating}
-              className="!text-xs !py-2 !px-3"
+              fullWidth
+              className="!text-xs !py-2.5"
             >
               {isGenerating ? 'Creating...' : 'Quiz Me'}
-            </GlassButton>
-
-            {/* Delete */}
-            <GlassButton
-              variant="danger"
-              onClick={(e: React.MouseEvent) => {
-                e.stopPropagation()
-                onDelete()
-              }}
-              className="!text-xs !py-2 !px-3"
-            >
-              Delete
             </GlassButton>
           </div>
         </div>
