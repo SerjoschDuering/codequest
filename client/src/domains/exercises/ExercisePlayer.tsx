@@ -1,5 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
-import { GlassButton, XPPopup } from '~/design-system'
+import { useState, useEffect, useRef, useMemo } from 'react'
+import { XPPopup } from '~/design-system'
+import {
+  CheckCircle, XCircle, ArrowRight, Lightning,
+} from '@phosphor-icons/react'
 import type { Exercise, SubmitResult } from './api'
 import { useSubmitAnswer } from './api'
 import { MultipleChoice } from './MultipleChoice'
@@ -18,38 +21,58 @@ type Props = {
   onComplete: () => void
 }
 
+const TYPE_LABELS: Record<string, string> = {
+  multiple_choice: 'Multiple Choice',
+  code_completion: 'Code Completion',
+  matching: 'Matching',
+  sequencing: 'Sequencing',
+  fill_in_blank: 'Fill in the Blank',
+  diagram_quiz: 'Diagram Quiz',
+  guess_output: 'Guess the Output',
+  spot_the_bug: 'Spot the Bug',
+  acronym_challenge: 'Acronym Challenge',
+}
+
 export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
   const [currentIdx, setCurrentIdx] = useState(0)
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [showXP, setShowXP] = useState(false)
   const submit = useSubmitAnswer()
-  const autoAdvanceTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const autoAdvanceTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
 
-  const exercise = exercises[currentIdx]
-  if (!exercise) return null
-
-  const content = JSON.parse(exercise.content)
-  const progress = ((currentIdx + 1) / exercises.length) * 100
+  const exercise = exercises[currentIdx] ?? null
   const isLast = currentIdx === exercises.length - 1
 
-  // Auto-advance on correct answer after delay
+  // Memoize parsed content to avoid new object identity on every render
+  const content = useMemo(
+    () => exercise ? JSON.parse(exercise.content) : null,
+    [exercise?.content],
+  )
+
+  // Auto-advance on correct answer (use refs to avoid stale closures)
+  const isLastRef = useRef(isLast)
+  isLastRef.current = isLast
+  const onCompleteRef = useRef(onComplete)
+  onCompleteRef.current = onComplete
+
   useEffect(() => {
     if (result?.correct) {
       autoAdvanceTimer.current = setTimeout(() => {
         setResult(null)
-        if (isLast) onComplete()
+        if (isLastRef.current) onCompleteRef.current()
         else setCurrentIdx(prev => prev + 1)
-      }, 1200)
+      }, 1500)
     }
     return () => { if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current) }
-  }, [result, isLast, onComplete])
+  }, [result])
+
+  if (!exercise || !content) return null
+
+  const progress = ((currentIdx + 1) / exercises.length) * 100
 
   async function handleAnswer(answer: unknown, correct: boolean) {
     const res = await submit.mutateAsync({
-      exerciseId: exercise.id,
-      lessonId,
-      answer,
-      correct,
+      exerciseId: exercise!.id, lessonId, answer, correct,
     })
     setResult(res)
     if (res.xpEarned > 0) setShowXP(true)
@@ -59,61 +82,105 @@ export function ExercisePlayer({ exercises, lessonId, onComplete }: Props) {
     if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current)
     setResult(null)
     if (isLast) onComplete()
-    else setCurrentIdx(currentIdx + 1)
+    else setCurrentIdx(prev => prev + 1)
   }
 
   function renderExercise() {
     const props = { content, onAnswer: handleAnswer }
-    switch (exercise.type) {
-      case 'multiple_choice': return <MultipleChoice {...props} />
-      case 'code_completion': return <CodeCompletion {...props} />
-      case 'matching': return <Matching {...props} />
-      case 'sequencing': return <Sequencing {...props} />
-      case 'fill_in_blank': return <FillInBlank {...props} />
-      case 'diagram_quiz': return <DiagramQuiz {...props} />
-      case 'guess_output': return <GuessTheOutput {...props} />
-      case 'spot_the_bug': return <SpotTheBug {...props} />
-      case 'acronym_challenge': return <AcronymChallenge {...props} />
-      default: return <p>Unknown exercise type: {exercise.type}</p>
+    switch (exercise!.type) {
+      case 'multiple_choice': return <MultipleChoice key={exercise!.id} {...props} />
+      case 'code_completion': return <CodeCompletion key={exercise!.id} {...props} />
+      case 'matching': return <Matching key={exercise!.id} {...props} />
+      case 'sequencing': return <Sequencing key={exercise!.id} {...props} />
+      case 'fill_in_blank': return <FillInBlank key={exercise!.id} {...props} />
+      case 'diagram_quiz': return <DiagramQuiz key={exercise!.id} {...props} />
+      case 'guess_output': return <GuessTheOutput key={exercise!.id} {...props} />
+      case 'spot_the_bug': return <SpotTheBug key={exercise!.id} {...props} />
+      case 'acronym_challenge': return <AcronymChallenge key={exercise!.id} {...props} />
+      default: return <p>Unknown type: {exercise!.type}</p>
     }
   }
 
   return (
-    <div className="flex flex-col gap-6 pb-24">
-      {/* Progress bar */}
-      <div className="h-1.5 rounded-full bg-[var(--glass-border)] overflow-hidden">
-        <div
-          className="h-full rounded-full bg-[var(--color-primary)]"
-          style={{ width: `${progress}%`, transition: 'width 0.3s var(--spring-smooth)' }}
-        />
+    <div className="flex flex-col gap-4 pb-32">
+      {/* Top utility strip */}
+      <div className="flex items-center gap-3">
+        <div className="flex-1 h-2 rounded-full bg-[var(--glass-border)] overflow-hidden">
+          <div
+            className="h-full rounded-full transition-all duration-500"
+            style={{
+              width: `${progress}%`,
+              background: 'linear-gradient(90deg, var(--color-primary), var(--color-teal))',
+            }}
+          />
+        </div>
+        <span className="text-xs font-medium text-[var(--text-secondary)] tabular-nums shrink-0">
+          {currentIdx + 1}/{exercises.length}
+        </span>
       </div>
 
-      <div className="text-xs text-[var(--text-secondary)]">
-        {currentIdx + 1} of {exercises.length}
-      </div>
+      {/* Type badge */}
+      <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+        {TYPE_LABELS[exercise.type] || exercise.type}
+      </span>
 
+      {/* Exercise content */}
       {renderExercise()}
 
+      {/* Feedback drawer */}
       {result && (
-        <div className="flex flex-col gap-3 mt-2">
-          <div
-            className="text-center py-3 rounded-xl font-semibold"
-            style={{
-              background: result.correct ? 'rgba(52,199,89,0.1)' : 'rgba(255,59,48,0.1)',
-              color: result.correct ? 'var(--color-success)' : 'var(--color-danger)',
-            }}
-          >
-            {result.correct ? 'Correct!' : 'Not quite'}
+        <div
+          className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-5"
+          style={{
+            background: 'var(--surface-primary)',
+            borderTop: '1px solid var(--glass-border)',
+            animation: 'slideUp 0.25s ease-out',
+          }}
+        >
+          <div className="max-w-lg mx-auto flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              {result.correct ? (
+                <CheckCircle size={28} weight="fill" color="var(--color-success)" />
+              ) : (
+                <XCircle size={28} weight="fill" color="var(--color-danger)" />
+              )}
+              <div className="flex-1">
+                <p className="font-semibold text-[15px]" style={{
+                  color: result.correct ? 'var(--color-success)' : 'var(--color-danger)',
+                }}>
+                  {result.correct ? 'Correct!' : 'Not quite'}
+                </p>
+                {result.xpEarned > 0 && (
+                  <p className="text-xs text-[var(--text-secondary)] flex items-center gap-1">
+                    <Lightning size={12} weight="fill" color="var(--color-warning)" />
+                    +{result.xpEarned} XP
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="w-full py-3 rounded-xl font-semibold text-[15px] text-white flex items-center justify-center gap-2 active:scale-[0.97] transition-transform"
+              style={{
+                background: result.correct ? 'var(--color-success)' : 'var(--color-primary)',
+              }}
+            >
+              {isLast ? 'Complete Lesson' : 'Continue'}
+              <ArrowRight size={18} weight="bold" />
+            </button>
           </div>
-          {!result.correct && (
-            <GlassButton onClick={handleNext} fullWidth>
-              {isLast ? 'Complete Lesson' : 'Next'}
-            </GlassButton>
-          )}
         </div>
       )}
 
       <XPPopup xp={result?.xpEarned ?? 0} show={showXP} onDone={() => setShowXP(false)} />
+
+      <style>{`
+        @keyframes slideUp {
+          from { transform: translateY(100%); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+      `}</style>
     </div>
   )
 }

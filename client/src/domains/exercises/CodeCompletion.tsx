@@ -1,8 +1,18 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { BracketsCurly, CheckCircle } from '@phosphor-icons/react'
 import { GlassButton } from '~/design-system'
 
-type Blank = { placeholder: string; answer: string; hints?: string[] }
-type Content = { prompt: string; codeTemplate: string; blanks: Blank[]; language?: string }
+type Blank = {
+  answer: string
+  placeholder?: string
+}
+
+type Content = {
+  prompt: string
+  codeTemplate: string
+  blanks: Blank[]
+  explanation?: string
+}
 
 type Props = {
   content: Content
@@ -12,60 +22,127 @@ type Props = {
 export function CodeCompletion({ content, onAnswer }: Props) {
   const [answers, setAnswers] = useState<string[]>(content.blanks.map(() => ''))
   const [submitted, setSubmitted] = useState(false)
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null)
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
-  function handleSubmit() {
-    const correct = content.blanks.every((blank, i) =>
-      answers[i].trim().toLowerCase() === blank.answer.toLowerCase()
-    )
-    setSubmitted(true)
-    onAnswer(answers, correct)
+  useEffect(() => {
+    inputRefs.current = inputRefs.current.slice(0, content.blanks.length)
+  }, [content.blanks.length])
+
+  function isBlankCorrect(index: number): boolean {
+    return answers[index].trim().toLowerCase() === content.blanks[index].answer.toLowerCase()
   }
 
-  // Replace ___BLANK___ placeholders with inline inputs
+  function handleSubmit() {
+    if (submitted) return
+    const allCorrect = content.blanks.every((_, i) => isBlankCorrect(i))
+    setSubmitted(true)
+    onAnswer(answers, allCorrect)
+  }
+
+  function handleInputChange(index: number, value: string) {
+    const next = [...answers]
+    next[index] = value
+    setAnswers(next)
+  }
+
+  function handleKeyDown(index: number, e: React.KeyboardEvent) {
+    if (submitted) return
+    if (e.key === 'Tab' && !e.shiftKey && index < content.blanks.length - 1) {
+      e.preventDefault()
+      inputRefs.current[index + 1]?.focus()
+    }
+    if (e.key === 'Enter' && answers.every(a => a.trim())) {
+      handleSubmit()
+    }
+  }
+
   const parts = content.codeTemplate.split(/___BLANK___/)
+  const allFilled = answers.every(a => a.trim())
 
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-lg font-semibold">{content.prompt}</h3>
-      <pre
-        className="p-4 rounded-xl text-sm font-mono overflow-x-auto whitespace-pre-wrap"
-        style={{ background: '#1E1E1E', color: '#D4D4D4' }}
-      >
-        {parts.map((part, i) => (
-          <span key={i}>
-            {part}
-            {i < parts.length - 1 && (
-              <input
-                type="text"
-                value={answers[i]}
-                onChange={(e) => {
-                  const next = [...answers]
-                  next[i] = e.target.value
-                  setAnswers(next)
-                }}
-                disabled={submitted}
-                placeholder={content.blanks[i]?.placeholder || '...'}
-                className="inline-block w-28 mx-0.5 px-2 py-0.5 rounded font-mono text-sm border"
-                style={{
-                  background: '#2D2D2D',
-                  color: submitted
-                    ? (answers[i]?.trim().toLowerCase() === content.blanks[i]?.answer.toLowerCase()
-                      ? '#4EC9B0' : '#F44747')
-                    : '#CE9178',
-                  borderColor: '#3E3E3E',
-                }}
-              />
-            )}
-          </span>
-        ))}
-      </pre>
-      {submitted && (
-        <p className="text-sm text-[var(--text-secondary)]">
-          Answers: {content.blanks.map(b => b.answer).join(', ')}
-        </p>
-      )}
+      {/* Header */}
+      <div className="flex items-center gap-2.5">
+        <div
+          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+          style={{ background: 'var(--color-primary)', opacity: 0.9 }}
+        >
+          <BracketsCurly size={18} weight="bold" color="#fff" />
+        </div>
+        <h3
+          className="text-[15px] font-semibold leading-snug"
+          style={{ color: 'var(--text-primary)' }}
+        >
+          {content.prompt}
+        </h3>
+      </div>
+
+      {/* Code block */}
+      <div className="rounded-xl overflow-hidden" style={{ background: '#1E1E1E' }}>
+        <pre className="p-4 text-sm font-mono overflow-x-auto whitespace-pre-wrap leading-relaxed m-0">
+          {parts.map((part, i) => (
+            <span key={i}>
+              <span style={{ color: '#D4D4D4' }}>{part}</span>
+              {i < parts.length - 1 && (
+                <span className="inline-block align-middle my-0.5">
+                  <input
+                    ref={el => { inputRefs.current[i] = el }}
+                    type="text"
+                    value={answers[i]}
+                    onChange={e => handleInputChange(i, e.target.value)}
+                    onFocus={() => setFocusedIndex(i)}
+                    onBlur={() => setFocusedIndex(null)}
+                    onKeyDown={e => handleKeyDown(i, e)}
+                    disabled={submitted}
+                    placeholder={content.blanks[i]?.placeholder || '...'}
+                    autoComplete="off"
+                    spellCheck={false}
+                    className="inline-block px-2.5 py-1 rounded font-mono text-sm
+                      border-2 border-dotted outline-none
+                      transition-all duration-200"
+                    style={{
+                      background: '#2D2D2D',
+                      width: `${Math.max(80, (answers[i]?.length || content.blanks[i]?.placeholder?.length || 3) * 9.5 + 30)}px`,
+                      color: submitted
+                        ? (isBlankCorrect(i) ? '#4EC9B0' : '#F44747')
+                        : '#CE9178',
+                      borderColor: submitted
+                        ? (isBlankCorrect(i) ? '#4EC9B0' : '#F44747')
+                        : focusedIndex === i
+                          ? '#569CD6'
+                          : '#3E3E3E',
+                      borderStyle: submitted ? 'solid' : 'dotted',
+                      boxShadow: focusedIndex === i && !submitted
+                        ? '0 0 0 2px rgba(86, 156, 214, 0.25)'
+                        : 'none',
+                    }}
+                  />
+                  {/* Inline status icon */}
+                  {submitted && (
+                    <span className="inline-block align-middle ml-1">
+                      {isBlankCorrect(i)
+                        ? <CheckCircle size={16} weight="fill" color="#4EC9B0" />
+                        : <span style={{ color: '#F44747', fontSize: '12px' }}>x</span>
+                      }
+                    </span>
+                  )}
+                </span>
+              )}
+            </span>
+          ))}
+        </pre>
+      </div>
+
+      {/* Submit button */}
       {!submitted && (
-        <GlassButton onClick={handleSubmit} disabled={answers.some(a => !a.trim())} fullWidth>
+        <GlassButton
+          onClick={handleSubmit}
+          disabled={!allFilled}
+          fullWidth
+          className="flex items-center justify-center gap-2 mt-1"
+        >
+          <CheckCircle size={20} weight="bold" />
           Check Code
         </GlassButton>
       )}
